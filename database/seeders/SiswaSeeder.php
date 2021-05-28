@@ -23,7 +23,6 @@ class SiswaSeeder extends Seeder
                 'avatar' => 'avatar/default.png',
                 'id_kelas' => $faker->numberBetween(1, 3),
                 'nipd' => $faker->nik(),
-                'username' => $faker->userName,
                 'tempat_lahir' => $faker->city,
                 'tanggal_lahir' => $faker->date($format = 'Y-m-d', $max = 'now'),
                 'password' => Hash::make("siswa$i"),

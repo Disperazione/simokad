@@ -76,12 +76,12 @@ return [
     'providers' => [
         'guru' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Guru::class,
         ],
 
         'admin' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Admin::class,
         ],
 
         'siswa' => [

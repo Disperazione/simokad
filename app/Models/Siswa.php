@@ -19,6 +19,7 @@ class Siswa extends Authenticatable
         'name',
         'password',
     ];
+    protected $table = 'siswa';
 
     protected $guard = 'siswa';
     /**
@@ -37,6 +38,6 @@ class Siswa extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        
     ];
 }
