@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-    <title>@yield('titel')</title>
+    <title>@yield('title')</title>
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="{{ asset('css/simplebar.css') }}">
     <!-- Fonts CSS -->
@@ -51,6 +51,8 @@
     <script src="{{ asset('js/tinycolor-min.js') }}"></script>
     <script src="{{ asset('js/config.js') }}"></script>
     <script src="{{ asset('js/apps.js') }}"></script>
+    <script src='{{ asset('js/jquery.dataTables.min.js') }}'></script>
+    <script src='{{ asset('js/dataTables.bootstrap4.min.js') }}'></script>
 </body>
 
 </html>

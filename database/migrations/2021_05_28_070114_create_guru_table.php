@@ -19,6 +19,7 @@ class CreateGuruTable extends Migration
             $table->string('avatar')->nullable();
             $table->string('email')->unique();
             $table->string('username');
+            $table->string('nip')->unique();
             $table->foreignId('role')->constrained('role')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

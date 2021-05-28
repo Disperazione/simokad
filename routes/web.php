@@ -19,8 +19,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 })->name('login');
+
 Route::post('/', AuthLogin::class);
 Route::post('/logout', AuthLogout::class)->name('logout');
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/dashboard', AdminDash::class)->name('dashboard');
+
+    Route::get('/guru', function () {
+        return view('page.tabel');
+    })->name('guru');
+
+    Route::get('/staff', function () {
+        return view('page.tabel');
+    })->name('staff');
 });

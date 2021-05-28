@@ -18,8 +18,7 @@ class DataDashboard extends Controller
      */
     public function __invoke(Request $request)
     {
-
-        return view('admin.dashboard', [
+        return view('page.dashboard', [
             'siswa' => Siswa::all()->count(),
             'guru' => Guru::all()->count(),
             'kelas' => Kelas::all()->count(),

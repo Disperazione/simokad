@@ -23,6 +23,7 @@ class GuruSeeder extends Seeder
                 'role' => $faker->numberBetween($min = 1, $max = 4),
                 'email' => $faker->freeEmail,
                 'username' => $faker->userName,
+                'nip' => $faker->nik(),
                 'password' => Hash::make("guru$i"),
             ));
         }

@@ -17,7 +17,7 @@ class CreateSiswaTable extends Migration
             $table->id('id');
             $table->string('name');
             $table->string('avatar')->nullable();
-            $table->string('nipd');
+            $table->string('nipd')->unique();
             $table->foreignId('id_kelas')->constrained('kelas')->onUpdate('cascade')->onDelete('cascade');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
