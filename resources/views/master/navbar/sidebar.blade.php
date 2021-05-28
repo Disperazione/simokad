@@ -19,7 +19,7 @@
         </div>
         <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item w-100">
-                <a class="nav-link active" href="#">
+                <a class="nav-link active" href="{{ route('admin.dashboard') }}">
                     <i class="fe fe-home fe-16"></i>
                     <span class="ml-3 item-text">Dashboard</span>
                 </a>
@@ -61,11 +61,11 @@
                                 class="ml-1 item-text">Tambah Data</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="./form_wizard.html"><span
+                        <a class="nav-link pl-3" href="{{ route('admin.dataguru') }}"><span
                                 class="ml-1 item-text">Data Guru</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="./form_layouts.html"><span
+                        <a class="nav-link pl-3" href="{{ route('admin.datastaff') }}"><span
                                 class="ml-1 item-text">Data Staff</span></a>
                     </li>
                 </ul>

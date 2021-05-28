@@ -17,9 +17,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 })->name('login');
+
 Route::post('/', AuthLogin::class);
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard');
+
+    Route::get('/dashboard/dataguru', function () {
+        return view('admin.dataguru');
+    })->name('dataguru');
+
+    Route::get('/dashboard/datastaff', function () {
+        return view('admin.datastaff');
+    })->name('datastaff');
 });
