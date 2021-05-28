@@ -5,7 +5,7 @@
     <nav class="vertnav navbar navbar-light">
         <!-- nav bar -->
         <div class="w-100 mb-4 d-flex">
-            <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
+            <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="@if (Request::is('admin/*')) {{ route('admin.dashboard') }}@elseif(Request::is('guru/*')){{ route('guru.dashboard') }}@else{{ route('siswa.dashboard') }} @endif">
                 <svg version="1.1" id="logo" class="navbar-brand-img brand-sm" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120"
                     xml:space="preserve">
@@ -19,8 +19,8 @@
         </div>
         <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item w-100">
-                <a class="nav-link active" href="#">
-                    <i class="fe fe-home fe-16"></i>
+                <a class="nav-link {{ Request::is('admin/dashboard') ? 'active' : '' }}" href="@if (Request::is('admin/*')) {{ route('admin.dashboard') }}@elseif(Request::is('guru/*')){{ route('guru.dashboard') }}@else{{ route('siswa.dashboard') }} @endif">
+                    <i class=" fe fe-home fe-16"></i>
                     <span class="ml-3 item-text">Dashboard</span>
                 </a>
             </li>
@@ -57,16 +57,17 @@
                 </a>
                 <ul class="collapse list-unstyled pl-4 w-100" id="forms">
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="./form_validation.html"><i class="fe fe-plus fe-16 text-success"></i><span
-                                class="ml-1 item-text">Tambah Data</span></a>
+                        <a class="nav-link pl-3" href="./form_validation.html"><i
+                                class="fe fe-plus fe-16 text-success"></i><span class="ml-1 item-text">Tambah
+                                Data</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="./form_wizard.html"><span
-                                class="ml-1 item-text">Data Guru</span></a>
+                        <a class="nav-link pl-3" href="./form_wizard.html"><span class="ml-1 item-text">Data
+                                Guru</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="./form_layouts.html"><span
-                                class="ml-1 item-text">Data Staff</span></a>
+                        <a class="nav-link pl-3" href="./form_layouts.html"><span class="ml-1 item-text">Data
+                                Staff</span></a>
                     </li>
                 </ul>
             </li>
@@ -77,11 +78,13 @@
                 </a>
                 <ul class="collapse list-unstyled pl-4 w-100" id="tables">
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="./form_validation.html"><i class="fe fe-plus fe-16 text-success"></i><span
-                                class="ml-1 item-text">Tambah Data</span></a>
+                        <a class="nav-link pl-3" href="./form_validation.html"><i
+                                class="fe fe-plus fe-16 text-success"></i><span class="ml-1 item-text">Tambah
+                                Data</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="./table_datatables.html"><span class="ml-1 item-text">Data Siswa</span></a>
+                        <a class="nav-link pl-3" href="./table_datatables.html"><span class="ml-1 item-text">Data
+                                Siswa</span></a>
                     </li>
                 </ul>
             </li>
@@ -92,7 +95,8 @@
                 </a>
                 <ul class="collapse list-unstyled pl-4 w-100" id="charts">
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="./chart-inline.html"><span class="ml-1 item-text">Kosong</span></a>
+                        <a class="nav-link pl-3" href="./chart-inline.html"><span
+                                class="ml-1 item-text">Kosong</span></a>
                     </li>
                 </ul>
             </li>

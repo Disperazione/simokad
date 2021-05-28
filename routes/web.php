@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\DataDashboard as AdminDash;
 use App\Http\Controllers\AuthLogin;
+use App\Http\Controllers\AuthLogout;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,14 +14,13 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('auth.login');
 })->name('login');
 Route::post('/', AuthLogin::class);
+Route::post('/logout', AuthLogout::class)->name('logout');
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', AdminDash::class)->name('dashboard');
 });

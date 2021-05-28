@@ -15,7 +15,7 @@
                         </div>
                         <div class="col">
                             <p class="small text-muted mb-0">Siswa</p>
-                            <span class="h3 mb-0">531</span>
+                            <span class="h3 mb-0">{{ $siswa }}</span>
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                         </div>
                         <div class="col">
                             <p class="small text-muted mb-0">Guru & Staff</p>
-                            <span class="h3 mb-0">46</span>
+                            <span class="h3 mb-0">{{ $guru }}</span>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="col">
                             <p class="small text-muted mb-0">Kelas</p>
-                            <span class="h3 mb-0">8</span>
+                            <span class="h3 mb-0">{{ $kelas }}</span>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                         </div>
                         <div class="col">
                             <p class="small text-muted mb-0">Mata pelajaran</p>
-                            <span class="h3 mb-0">21</span>
+                            <span class="h3 mb-0">database?</span>
                         </div>
                     </div>
                 </div>
@@ -105,4 +105,8 @@
 
 
     {{-- tutup --}}
+@endsection
+@section('js')
+    <script src="{{ asset('js/apexcharts.custom.js') }}"></script>
+    <script src="{{ asset('js/apexcharts.js') }}"></script>
 @endsection

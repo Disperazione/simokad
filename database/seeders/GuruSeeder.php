@@ -19,7 +19,7 @@ class GuruSeeder extends Seeder
         for ($i = 1; $i <= 10; $i++) {
             DB::table('guru')->insert(array(
                 'name' => $faker->name,
-                'avatar' => 'avatar/default.png',
+                'avatar' => 'avatars/default.png',
                 'role' => $faker->numberBetween($min = 1, $max = 4),
                 'email' => $faker->freeEmail,
                 'username' => $faker->userName,

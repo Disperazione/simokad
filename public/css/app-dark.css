@@ -2377,9 +2377,9 @@ input[type="button"].btn-block {
     text-decoration: none;
     background-color: #f8f9fa; }
   .dropdown-item.active, .dropdown-item:active {
-    color: #ffffff;
+    color: #ffffff !important;
     text-decoration: none;
-    background-color: #1b68ff; }
+    background-color: #1b68ff !important; }
   .dropdown-item.disabled, .dropdown-item:disabled {
     color: #6c757d;
     pointer-events: none;
@@ -8066,6 +8066,9 @@ svg.navbar-brand-img {
   color: #dee2e6; }
   .navbar-light .navbar-nav .nav-link:hover {
     background: #495057;
+    color: #1b68ff;
+    border-radius: 0.2rem; }
+  .navbar-light .navbar-nav .nav-link.active {
     color: #1b68ff;
     border-radius: 0.2rem; }
 

@@ -20,7 +20,7 @@ class SiswaSeeder extends Seeder
         for ($i = 1; $i <= 120; $i++) {
             DB::table('siswa')->insert(array(
                 'name' => $faker->name,
-                'avatar' => 'avatar/default.png',
+                'avatar' => 'avatars/default.png',
                 'id_kelas' => $faker->numberBetween(1, 3),
                 'nipd' => $faker->nik(),
                 'tempat_lahir' => $faker->city,
