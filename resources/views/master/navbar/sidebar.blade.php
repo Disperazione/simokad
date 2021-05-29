@@ -19,7 +19,7 @@
         </div>
         <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item w-100">
-                <a class="nav-link {{ Request::is('admin/dashboard') ? 'active' : '' }}" href="@if (Request::is('admin/*')) {{ route('admin.dashboard') }}@elseif(Request::is('guru/*')){{ route('guru.dashboard') }}@else{{ route('siswa.dashboard') }} @endif">
+                <a class="nav-link {{ Request::is('*/dashboard') ? 'active' : '' }}" href="@if (Request::is('admin/*')) {{ route('admin.dashboard') }}@elseif(Request::is('guru/*')){{ route('guru.dashboard') }}@else{{ route('siswa.dashboard') }} @endif">
                     <i class=" fe fe-home fe-16"></i>
                     <span class="ml-3 item-text">Dashboard</span>
                 </a>
@@ -52,9 +52,9 @@
             </li>
             @auth('admin')
                 <li class="nav-item dropdown">
-                    <a href="#adminTabelGuru" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                    <a href="#adminTabelGuru" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link {{ Request::is('admin/guru') ? 'active' : '' }}">
                         <i class="fe fe-book fe-16"></i>
-                        <span class="ml-3 item-text">Guru & Staff</span>
+                        <span class="ml-3 item-text">Guru</span>
                     </a>
                     <ul class="collapse list-unstyled pl-4 w-100" id="adminTabelGuru">
                         <li class="nav-item">
@@ -63,12 +63,8 @@
                                     Data</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link pl-3" href="{{ route('admin.guru') }}"><span class="ml-1 item-text">Data
+                            <a class="nav-link pl-3 {{ Request::is('admin/guru') ? 'active' : '' }}" href="{{ route('admin.guru') }}"><span class="ml-1 item-text">Data
                                     Guru</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link pl-3" href="{{ route('admin.staff') }}"><span class="ml-1 item-text">Data
-                                    Staff</span></a>
                         </li>
                     </ul>
                 </li>

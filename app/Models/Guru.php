@@ -42,4 +42,9 @@ class Guru extends Authenticatable
     protected $casts = [
 
     ];
+
+    public function GetRole()
+    {
+        return $this->belongsTo(Role::class, 'role');
+    }
 }

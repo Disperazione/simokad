@@ -32,7 +32,7 @@
                             </span>
                         </div>
                         <div class="col">
-                            <p class="small text-muted mb-0">Guru & Staff</p>
+                            <p class="small text-muted mb-0">Guru</p>
                             <span class="h3 mb-0">{{ $guru }}</span>
                         </div>
                     </div>

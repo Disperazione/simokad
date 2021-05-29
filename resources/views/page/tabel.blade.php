@@ -11,36 +11,46 @@
                     <table class="table datatables" id="dataTable-1">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>NIP</th>
-                                <th>NAMA</th>
-                                <th>JABATAN</th>
-                                <th>ACTION</th>
+                                @auth('admin')
+                                    @if (Request::is('*/guru'))
+                                        <th>#</th>
+                                        <th>NIP</th>
+                                        <th>NAMA</th>
+                                        <th>JABATAN</th>
+                                        <th>ACTION</th>
+                                    @endif
+                                @endauth
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input">
-                                        <label class="custom-control-label"></label>
-                                    </div>
-                                </td>
-                                <td>123123412312</td>
-                                <td>Aminudin</td>
-                                <td>Guru</td>
-                                <td>
-                                    <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="text-muted sr-only">Action</span>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-left">
-                                        <a class="dropdown-item" href="#">Edit</a>
-                                        <a class="dropdown-item" href="#">Remove</a>
-                                        <a class="dropdown-item" href="#">Assign</a>
-                                    </div>
-                                </td>
-                            </tr>
+                            @auth('admin')
+                                @if (Request::is('*/guru'))
+                                    @foreach ($guru as $data)
+                                        <tr>
+                                            <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input">
+                                                    <label class="custom-control-label"></label>
+                                                </div>
+                                            </td>
+                                            <td>{{ $data->nip }}</td>
+                                            <td>{{ $data->name }}</td>
+                                            <td>{{ $data->GetRole->name }}</td>
+                                            <td>
+                                                <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="text-muted sr-only">Action</span>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-left">
+                                                    <a class="dropdown-item" href="#">Edit</a>
+                                                    <a class="dropdown-item" href="#">Remove</a>
+                                                    <a class="dropdown-item" href="#">Assign</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
+                            @endauth
                         </tbody>
                     </table>
                 </div>
