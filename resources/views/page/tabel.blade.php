@@ -13,10 +13,18 @@
                             <tr>
                                 @auth('admin')
                                     @if (Request::is('*/guru'))
-                                        <th>#</th>
+                                        <th>No.</th>
                                         <th>NIP</th>
                                         <th>NAMA</th>
+                                        <th>EMAIl</th>
                                         <th>JABATAN</th>
+                                        <th>ACTION</th>
+                                    @elseif (Request::is('*/siswa'))
+                                        <th>No.</th>
+                                        <th>NIPD</th>
+                                        <th>NAMA</th>
+                                        <th>KELAS</th>
+                                        <th>TEMPAT & TANGGAL LAHIR</th>
                                         <th>ACTION</th>
                                     @endif
                                 @endauth
@@ -27,23 +35,48 @@
                                 @if (Request::is('*/guru'))
                                     @foreach ($guru as $data)
                                         <tr>
-                                            <td>
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input">
-                                                    <label class="custom-control-label"></label>
-                                                </div>
-                                            </td>
+                                            <td>{{ $loop->iteration }}</td>
                                             <td>{{ $data->nip }}</td>
                                             <td>{{ $data->name }}</td>
+                                            <td>{{ $data->email }}</td>
                                             <td>{{ $data->GetRole->name }}</td>
                                             <td>
                                                 <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <span class="text-muted sr-only">Action</span>
                                                 </button>
-                                                <div class="dropdown-menu dropdown-menu-left">
-                                                    <a class="dropdown-item" href="{{ route('admin.guru.edit',  $data->id) }}">Edit</a>
-                                                    <a class="dropdown-item" href="{{ route('admin.guru.destroy',  $data->id) }}">Remove</a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('admin.guru.show', $data->id) }}">Detail</a>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('admin.guru.edit', $data->id) }}">Edit</a>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('admin.guru.destroy', $data->id) }}">Remove</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @elseif (Request::is('*/siswa'))
+                                    @foreach ($siswa as $data)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $data->nipd }}</td>
+                                            <td>{{ $data->name }}</td>
+                                            <td>{{ $data->GetKelas->slug }}</td>
+                                            <td>{{ $data->tempat_lahir }},
+                                                {{ \Carbon\Carbon::parse($data->tanggal_lahir)->format('d-m-Y') }}</td>
+                                            <td>
+                                                <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="text-muted sr-only">Action</span>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('admin.siswa.show', $data->id) }}">Detail</a>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('admin.siswa.edit', $data->id) }}">Edit</a>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('admin.siswa.destroy', $data->id) }}">Remove</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -66,12 +99,18 @@
     <script src='{{ asset('js/jquery.dataTables.min.js') }}'></script>
     <script src='{{ asset('js/dataTables.bootstrap4.min.js') }}'></script>
     <script>
-        $('#dataTable-1').DataTable({
-            autoWidth: true,
-            "lengthMenu": [
-                [3, 16, 32, 64, -1],
-                [3, 16, 32, 64, "All"]
-            ]
+        $(document).ready(function() {
+            $('#dataTable-1').DataTable({
+                autoWidth: true,
+                paging: true,
+                lengthChange: true,
+                searching: true,
+                ordering: true,
+                "lengthMenu": [
+                    [15, 30, 50, 100, -1],
+                    [15, 30, 50, 100, "All"]
+                ]
+            });
         });
 
     </script>

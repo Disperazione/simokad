@@ -17,6 +17,7 @@ class CreateKelasTable extends Migration
             $table->id();
             $table->foreignId('id_walikelas')->constrained('guru')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name');
+            $table->string('slug');
             $table->timestamps();
         });
     }

@@ -52,7 +52,8 @@
             </li>
             @auth('admin')
                 <li class="nav-item dropdown">
-                    <a href="#adminTabelGuru" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link {{ Request::is('admin/guru') ? 'active' : '' }}">
+                    <a href="#adminTabelGuru" data-toggle="collapse" aria-expanded="false"
+                        class="dropdown-toggle nav-link {{ Request::is('admin/guru') ? 'active' : '' }}">
                         <i class="fe fe-book fe-16"></i>
                         <span class="ml-3 item-text">Guru</span>
                     </a>
@@ -63,25 +64,29 @@
                                     Data</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link pl-3 {{ Request::is('admin/guru') ? 'active' : '' }}" href="{{ route('admin.guru.index') }}"><span class="ml-1 item-text">Data
+                            <a class="nav-link pl-3 {{ Request::is('admin/guru') ? 'active' : '' }}"
+                                href="{{ route('admin.guru.index') }}"><span class="ml-1 item-text">Data
                                     Guru</span></a>
                         </li>
                     </ul>
                 </li>
             @endauth
-            <li class="nav-item dropdown">
-                <a href="#tables" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+            <li class="nav-item dropdown {{ Request::is('admin/siswa','admin/siswa/*') ? 'active' : '' }}">
+                <a href="#adminTabelSiswa" data-toggle="collapse" aria-expanded="false"
+                    class="dropdown-toggle nav-link {{ Request::is('admin/siswa','admin/siswa/*') ? 'active' : '' }}">
                     <i class="fe fe-users fe-16"></i>
                     <span class="ml-3 item-text">Siswa</span>
                 </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="tables">
+                <ul class="collapse list-unstyled pl-4 w-100" id="adminTabelSiswa">
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="./form_validation.html"><i
+                        <a class="nav-link pl-3 {{ Request::routeIs('admin.siswa.create') ? 'active' : '' }}"
+                            href="{{ route('admin.siswa.create') }}"><i
                                 class="fe fe-plus fe-16 text-success"></i><span class="ml-1 item-text">Tambah
                                 Data</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="./table_datatables.html"><span class="ml-1 item-text">Data
+                        <a class="nav-link pl-3 {{ Request::is('admin/siswa') ? 'active' : '' }}"
+                            href="{{ route('admin.siswa.index') }}"><span class="ml-1 item-text">Data
                                 Siswa</span></a>
                     </li>
                 </ul>

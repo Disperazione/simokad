@@ -38,6 +38,10 @@ class Siswa extends Authenticatable
      * @var array
      */
     protected $casts = [
-        
+        'tanggal_lahir' => 'datetime:d-m-Y',
     ];
+    public function GetKelas()
+    {
+        return $this->belongsTo(Kelas::class, 'id_kelas');
+    }
 }

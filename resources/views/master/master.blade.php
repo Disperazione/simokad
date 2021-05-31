@@ -38,8 +38,6 @@
         </main> <!-- main -->
     </div> <!-- .wrapper -->
 
-    {{-- Js --}}
-    @stack('js')
     {{-- tutup --}}
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
@@ -51,8 +49,7 @@
     <script src="{{ asset('js/tinycolor-min.js') }}"></script>
     <script src="{{ asset('js/config.js') }}"></script>
     <script src="{{ asset('js/apps.js') }}"></script>
-    <script src='{{ asset('js/jquery.dataTables.min.js') }}'></script>
-    <script src='{{ asset('js/dataTables.bootstrap4.min.js') }}'></script>
+    @stack('js')
 </body>
 
 </html>

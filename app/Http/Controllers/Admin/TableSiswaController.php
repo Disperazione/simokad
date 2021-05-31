@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Guru;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
-class TableGuruController extends Controller
+class TableSiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class TableGuruController extends Controller
      */
     public function index()
     {
-        return view('page.tabel', ['guru' => Guru::select('id','name', 'email', 'nip', 'role')->get()]);
+        return view('page.tabel', ['siswa' => Siswa::select('id', 'name', 'nipd', 'id_kelas', 'tempat_lahir', 'tanggal_lahir')->get()]);
     }
 
     /**
@@ -25,7 +25,7 @@ class TableGuruController extends Controller
      */
     public function create()
     {
-        //
+        return view('page.tabel', ['siswa' => Siswa::select('id', 'name', 'nipd', 'id_kelas', 'tempat_lahir', 'tanggal_lahir')->get()]);
     }
 
     /**
