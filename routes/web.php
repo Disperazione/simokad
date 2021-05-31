@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DataDashboard as AdminDash;
 use App\Http\Controllers\Admin\TableGuru as AdminTableG;
+use App\Http\Controllers\Admin\TableGuruController as AdminControllerG;
 use App\Http\Controllers\AuthLogin;
 use App\Http\Controllers\AuthLogout;
 use Illuminate\Support\Facades\Route;
@@ -26,5 +27,7 @@ Route::post('/logout', AuthLogout::class)->name('logout');
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/dashboard', AdminDash::class)->name('dashboard');
 
-    Route::get('/guru', AdminTableG::class)->name('guru');
+    Route::resource('/guru', AdminControllerG::class)->only([
+        'edit', 'destroy','update','index'
+    ]);
 });

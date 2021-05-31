@@ -42,9 +42,8 @@
                                                     <span class="text-muted sr-only">Action</span>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-left">
-                                                    <a class="dropdown-item" href="#">Edit</a>
-                                                    <a class="dropdown-item" href="#">Remove</a>
-                                                    <a class="dropdown-item" href="#">Assign</a>
+                                                    <a class="dropdown-item" href="{{ route('admin.guru.edit',  $data->id) }}">Edit</a>
+                                                    <a class="dropdown-item" href="{{ route('admin.guru.destroy',  $data->id) }}">Remove</a>
                                                 </div>
                                             </td>
                                         </tr>

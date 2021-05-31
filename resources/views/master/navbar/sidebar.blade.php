@@ -63,7 +63,7 @@
                                     Data</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link pl-3 {{ Request::is('admin/guru') ? 'active' : '' }}" href="{{ route('admin.guru') }}"><span class="ml-1 item-text">Data
+                            <a class="nav-link pl-3 {{ Request::is('admin/guru') ? 'active' : '' }}" href="{{ route('admin.guru.index') }}"><span class="ml-1 item-text">Data
                                     Guru</span></a>
                         </li>
                     </ul>
