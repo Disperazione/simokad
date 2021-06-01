@@ -1,5 +1,5 @@
 @extends('master.master')
-@section('title', 'Data Guru')
+@section('title', 'Tambah Data Guru')
 
 @section('content')
     <div class="container-fluid">
@@ -8,20 +8,13 @@
                 <h2 class="page-title">Tambah Data</h2>
                 <div class="card shadow mb-4">
                     @auth('admin')
-                        @if (Request::is('*/guru'))
+                        {{-- Form tambah data guru di Admin --}}
+                        @if (Request::routeIs(Auth::getDefaultDriver() . '.guru.create'))
                             <div class="card-header">
                                 <strong class="card-title">Data guru</strong>
                             </div>
-                        @elseif (Request::is('*/siswa'))
-                            <div class="card-header">
-                                <strong class="card-title">Data Siswa</strong>
-                            </div>
-                        @endif
-                    @endauth
-                    <div class="card-body">
-                        @auth('admin')
-                            @if (Request::is('*/guru'))
-                                <Form action="{{ route('admin.guru.store') }}" method="POST">
+                            <div class="card-body">
+                                <Form action="{{ route(Auth::getDefaultDriver() . '.guru.store') }}" method="POST">
                                     @csrf
                                     <div class="row">
                                         <div class="col">
@@ -54,10 +47,15 @@
                                             </div>
                                         </div> <!-- /.col -->
                                     </div>
-                                    <button type="submit" class="btn mb-2 btn-primary float-right"><span
-                                            class="fe fe-arrow-right fe-16 mr-2"></span>Simpan</button>
+                                    <button type="submit" class="btn mb-2 btn-primary float-right">
+                                        <span class="fe fe-arrow-right fe-16 mr-2"></span>Simpan
+                                    </button>
                                 </Form>
-                            @elseif (Request::is('*/siswa'))
+                            </div>
+                        {{-- Form tambah data siswa di Admin --}}
+                        @elseif (Request::routeIs(Auth::getDefaultDriver() . '.siswa.create'))
+                            <Form action="{{ route(Auth::getDefaultDriver() . '.siswa.store') }}" method="POST">
+                                @csrf
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group mb-3">
@@ -91,11 +89,10 @@
                                 </div>
                                 <button type="submit" class="btn mb-2 btn-primary float-right"><span
                                         class="fe fe-arrow-right fe-16 mr-2"></span>Simpan</button>
-                                </Form>
-                            @endif
-                        @endauth
-                    </div>
-                </div> <!-- / .card -->
+                            </Form>
+                        @endif
+                    </div> <!-- / .card -->
+                @endauth
             </div> <!-- .col-12 -->
         </div> <!-- .row -->
     </div> <!-- .container-fluid -->

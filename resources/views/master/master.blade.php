@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-    <title>@yield('title')</title>
+    <title>{{ Config::get('app.name') }} - @yield('title')</title>
     <!-- Simple bar CSS -->
     <link rel="stylesheet" href="{{ asset('css/simplebar.css') }}">
     <!-- Fonts CSS -->
