@@ -20,15 +20,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
-})->name('login');
+})->name('login')->middleware(['guest:admin', 'guest:guru', 'guest:siswa']);
 
 Route::post('/', AuthLogin::class);
 Route::post('/logout', AuthLogout::class)->name('logout');
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+Route::middleware('auth:admin')->name('admin.')->prefix('admin')->group(function () {
     Route::get('/dashboard', AdminDash::class)->name('dashboard');
 
     Route::resources([
         '/guru' => AdminControllerG::class,
         '/siswa' => AdminControllerS::class,
     ]);
+});
+
+Route::middleware('auth:guru')->name('guru.')->prefix('guru')->group(function () {
+    Route::get('/dashboard', AdminDash::class)->name('dashboard');
 });
