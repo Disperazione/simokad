@@ -9,8 +9,8 @@
             </a>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-muted pr-0" href="javascript:void()" id="navbarDropdownMenuLink" role="button"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-muted pr-0" href="javascript:void()" id="navbarDropdownMenuLink"
+                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="avatar avatar-sm mt-2">
                     @auth('admin')
                         <img src="{{ asset(Auth::guard('admin')->user()->avatar) }}"

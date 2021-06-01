@@ -22,6 +22,7 @@
 
     <div class="container-login100" style="background-image: url('{{ asset('images/bg-01.jpg') }}');">
         <div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
+            <img class="rounded mx-auto d-block mb-3" src="{{ asset('images/login.svg') }}" width="250" alt="Login">
             <form class="login100-form" action="" method="post">
                 @csrf
                 <span class="login100-form-title p-b-37">

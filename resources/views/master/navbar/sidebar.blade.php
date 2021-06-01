@@ -30,7 +30,7 @@
                 </a>
                 <ul class="collapse list-unstyled pl-4 w-100" id="ui-elements">
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="./ui-color.html"><span class="ml-1 item-text">Kosong</span>
+                        <a class="nav-link pl-3" href=""><span class="ml-1 item-text">Kelas</span>
                         </a>
                     </li>
                 </ul>
@@ -41,7 +41,32 @@
                     <span class="ml-3 item-text">Akademik</span>
                 </a>
                 <ul class="collapse list-unstyled pl-4 w-100" id="profile">
-                    <a class="nav-link pl-3" href="./profile.html"><span class="ml-1">Kosong</span></a>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href=""><span class="ml-1 item-text">Mata
+                                Pelajaran</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href=""><span class="ml-1 item-text">Guru Mata
+                                Pelajaran</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href=""><span class="ml-1 item-text">Jadwal Pelajaran</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href=""><span class="ml-1 item-text">Data KD</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href=""><span class="ml-1 item-text">Data KKM</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href=""><span class="ml-1 item-text">Data Nilai Siswa</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
             @auth('admin')
@@ -49,8 +74,8 @@
                     class="nav-item dropdown {{ Request::is(Auth::getDefaultDriver() . '/guru', Auth::getDefaultDriver() . '/guru/*') ? 'active' : '' }}">
                     <a href="#TabelGuru" data-toggle="collapse" aria-expanded="false"
                         class="dropdown-toggle nav-link {{ Request::is(Auth::getDefaultDriver() . '/guru', Auth::getDefaultDriver() . '/guru/*') ? 'active' : '' }}">
-                        <i class="fe fe-book fe-16"></i>
-                        <span class="ml-3 item-text">Guru</span>
+                        <i class="fe fe-user fe-16"></i>
+                        <span class="ml-3 item-text">Guru & Karyawan</span>
                     </a>
                     <ul class="collapse list-unstyled pl-4 w-100" id="TabelGuru">
                         <li class="nav-item">
@@ -62,7 +87,19 @@
                         <li class="nav-item">
                             <a class="nav-link pl-3 {{ Request::is(Auth::getDefaultDriver() . '/guru') ? 'active' : '' }}"
                                 href="{{ route(Auth::getDefaultDriver() . '.guru.index') }}">
+                                <span class="ml-1 item-text">Data Karyawan</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pl-3 {{ Request::is(Auth::getDefaultDriver() . '/guru') ? 'active' : '' }}"
+                                href="{{ route(Auth::getDefaultDriver() . '.guru.index') }}">
                                 <span class="ml-1 item-text">Data Guru</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pl-3 {{ Request::is(Auth::getDefaultDriver() . '/guru') ? 'active' : '' }}"
+                                href="">
+                                <span class="ml-1 item-text">Data ADM Guru</span>
                             </a>
                         </li>
                     </ul>
@@ -91,19 +128,26 @@
                     </li>
                 </ul>
             </li>
+        </ul>
+        <p class="text-muted nav-heading mt-4 mb-1">
+            <span>Etc</span>
+        </p>
+        <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item dropdown">
-                <a href="#charts" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fe fe-folder fe-16"></i>
-                    <span class="ml-3 item-text">Manajemen Data</span>
+                <a href="#laporan" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                    <i class="fe fe-book fe-16"></i>
+                    <span class="ml-3 item-text">Laporan</span>
                 </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="charts">
+                <ul class="collapse list-unstyled pl-4 w-100" id="laporan">
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="./chart-inline.html">
-                            <span class="ml-1 item-text">Kosong</span>
+                        <a class="nav-link pl-3" href=""><span class="ml-1 item-text">Cetak Raport</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href=""><span class="ml-1 item-text">Cetak KKM</span>
                         </a>
                     </li>
                 </ul>
-            </li>
         </ul>
         <div class="btn-box w-100 mt-4 mb-1">
             <a href="https://themeforest.net/item/tinydash-bootstrap-html-admin-dashboard-template/27511269"

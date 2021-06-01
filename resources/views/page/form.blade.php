@@ -6,6 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2 class="page-title">Tambah Data</h2>
+                <img class="" src="{{ asset('images/form.svg') }}" width="200" alt="Form">
                 <div class="card shadow mb-4">
                     @auth('admin')
                         {{-- Form tambah data guru di Admin --}}
@@ -52,7 +53,7 @@
                                     </button>
                                 </Form>
                             </div>
-                        {{-- Form tambah data siswa di Admin --}}
+                            {{-- Form tambah data siswa di Admin --}}
                         @elseif (Request::routeIs(Auth::getDefaultDriver() . '.siswa.create'))
                             <Form action="{{ route(Auth::getDefaultDriver() . '.siswa.store') }}" method="POST">
                                 @csrf
