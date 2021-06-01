@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Guru;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TableGuruController extends Controller
 {
@@ -25,7 +26,7 @@ class TableGuruController extends Controller
      */
     public function create()
     {
-        //
+        return view('page.form');
     }
 
     /**
@@ -36,7 +37,11 @@ class TableGuruController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $validate = Validator::make($data, [
+            
+        ]);
     }
 
     /**

@@ -25,7 +25,7 @@ class TableSiswaController extends Controller
      */
     public function create()
     {
-        return view('page.tabel', ['siswa' => Siswa::select('id', 'name', 'nipd', 'id_kelas', 'tempat_lahir', 'tanggal_lahir')->get()]);
+        return view('page.form');
     }
 
     /**

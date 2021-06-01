@@ -54,7 +54,7 @@
                     </a>
                     <ul class="collapse list-unstyled pl-4 w-100" id="TabelGuru">
                         <li class="nav-item">
-                            <a class="nav-link pl-3" href="./form_validation.html">
+                            <a class="nav-link pl-3" href="{{ route(Auth::getDefaultDriver() . '.guru.create') }}">
                                 <i class="fe fe-plus fe-16 text-success"></i>
                                 <span class="ml-1 item-text">Tambah Data</span>
                             </a>
