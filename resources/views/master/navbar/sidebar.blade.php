@@ -75,11 +75,11 @@
                     <a href="#TabelGuru" data-toggle="collapse" aria-expanded="false"
                         class="dropdown-toggle nav-link {{ Request::is(Auth::getDefaultDriver() . '/guru', Auth::getDefaultDriver() . '/guru/*') ? 'active' : '' }}">
                         <i class="fe fe-user fe-16"></i>
-                        <span class="ml-3 item-text">Guru & Karyawan</span>
+                        <span class="ml-3 item-text">Guru</span>
                     </a>
                     <ul class="collapse list-unstyled pl-4 w-100" id="TabelGuru">
                         <li class="nav-item">
-                            <a class="nav-link pl-3" href="{{ route(Auth::getDefaultDriver() . '.guru.create') }}">
+                            <a class="nav-link pl-3 {{ Request::routeIs(Auth::getDefaultDriver() . '.guru.create') ? 'active' : '' }}" href="{{ route(Auth::getDefaultDriver() . '.guru.create') }}">
                                 <i class="fe fe-plus fe-16 text-success"></i>
                                 <span class="ml-1 item-text">Tambah Data</span>
                             </a>
@@ -87,19 +87,7 @@
                         <li class="nav-item">
                             <a class="nav-link pl-3 {{ Request::is(Auth::getDefaultDriver() . '/guru') ? 'active' : '' }}"
                                 href="{{ route(Auth::getDefaultDriver() . '.guru.index') }}">
-                                <span class="ml-1 item-text">Data Karyawan</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link pl-3 {{ Request::is(Auth::getDefaultDriver() . '/guru') ? 'active' : '' }}"
-                                href="{{ route(Auth::getDefaultDriver() . '.guru.index') }}">
                                 <span class="ml-1 item-text">Data Guru</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link pl-3 {{ Request::is(Auth::getDefaultDriver() . '/guru') ? 'active' : '' }}"
-                                href="">
-                                <span class="ml-1 item-text">Data ADM Guru</span>
                             </a>
                         </li>
                     </ul>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Guru;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,7 +17,7 @@ class TableGuruController extends Controller
      */
     public function index()
     {
-        return view('page.tabel', ['guru' => Guru::select('id','name', 'email', 'nip', 'role')->get()]);
+        return view('page.tabel', ['guru' => Guru::select('id', 'name', 'email', 'nip', 'role')->get()]);
     }
 
     /**
@@ -26,7 +27,7 @@ class TableGuruController extends Controller
      */
     public function create()
     {
-        return view('page.form');
+        return view('page.form', ['jabatan' => Role::all()]);
     }
 
     /**
@@ -37,11 +38,19 @@ class TableGuruController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-
-        $validate = Validator::make($data, [
-            
+        $validate = Validator::make($request->all(), [
+            'nip' => 'required|numeric',
+            'name' => 'required|string',
+            'email' => 'required|email:rfc,dns',
+            'avatar' => 'required|mimes:jpg,bmp,png',
         ]);
+
+        if ($validate->fails()) {
+            return redirect()->back()
+                ->withErrors($validate)
+                ->withInput();
+        }
+        
     }
 
     /**
