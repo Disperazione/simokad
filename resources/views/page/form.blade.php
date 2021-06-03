@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <h2 class="page-title">Tambah Data
-                    {{ Request::routeIs(Auth::getDefaultDriver() . '.guru.create') ? 'Guru' : 'Siswa' }}</h2>
+                    {{ Request::routeIs(Auth::getDefaultDriver() . '.guru.create') ? 'Guru' : 'Siswa'}}</h2>
                 <img class="" src="{{ asset('images/form.svg') }}" width="200" alt="Form">
                 <div class="card shadow mb-4">
                     @auth('admin')
@@ -99,7 +99,49 @@
 
                                             <div class="form-group mb-3">
                                                 <label for="simpleinput">Photo</label>
-                                                <input type="file" id="simpleinput" class="form-control border-0" name='photo'>
+                                                <input type="file" id="simpleinput" class="form-control border-0" name='avatar'>
+                                            </div>
+                                        </div> <!-- /.col -->
+                                    </div>
+                                    <button type="submit" class="btn mb-2 btn-primary float-right"><span
+                                            class="fe fe-arrow-right fe-16 mr-2"></span>Simpan</button>
+                                </Form>
+                            </div>
+                            {{-- Form edit data guru di Admin --}}
+                        @elseif (Request::routeIs(Auth::getDefaultDriver() . '.guru.edit'))
+                            <div class="card-body">
+                                <Form action="{{ route(Auth::getDefaultDriver() . '.guru.update', ['guru' => $guru->id]) }}"
+                                    method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group mb-3">
+                                                <label for="simpleinput">NIPD</label>
+                                                <input type="text" id="nip" class="form-control" name="nip"
+                                                    value="{{ $guru->nip }}">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="simpleinput">Nama</label>
+                                                <input type="text" id="name" class="form-control" name="name"
+                                                    value="{{ $guru->name }}">
+                                            </div>
+                                            <div class="form-group mb-3">
+                                                <label for="simple-select2">Kelas</label>
+                                                <select class="form-control select2" id="simple-select2" name="role">
+                                                    <optgroup label="Jabatan">
+                                                        @foreach ($jabatan as $role)
+                                                            <option value="{{ $role->id }}" @if ($guru->role === $role->id) selected @endif>
+                                                                {{ $role->name }}</option>
+                                                        @endforeach
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group mb-3">
+                                                <label for="simpleinput">Photo</label>
+                                                <input type="file" id="simpleinput" class="form-control border-0" name="avatar"
+                                                    value="{{ $guru->avatar }}">
                                             </div>
                                         </div> <!-- /.col -->
                                     </div>

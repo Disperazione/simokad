@@ -50,7 +50,6 @@ class TableGuruController extends Controller
                 ->withErrors($validate)
                 ->withInput();
         }
-        
     }
 
     /**
@@ -70,9 +69,9 @@ class TableGuruController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Guru $guru)
     {
-        //
+        return view('page.form', ['guru' => $guru, 'jabatan' => Role::all()]);
     }
 
     /**
@@ -82,9 +81,16 @@ class TableGuruController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Guru $guru)
     {
-        //
+        $guru->update([
+            'nip' => $request->nip,
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role,
+            'avatar' => $request->avatar,
+        ]);
+        return redirect('admin/guru');
     }
 
     /**
@@ -93,8 +99,9 @@ class TableGuruController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        Guru::find($request->id)->delete();
+        return redirect()->back();
     }
 }

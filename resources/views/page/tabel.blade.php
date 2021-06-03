@@ -60,7 +60,7 @@
                                                 <a class="dropdown-item"
                                                     href="{{ route('admin.guru.edit', $data->id) }}">Edit</a>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('admin.guru.destroy', $data->id) }}">Remove</a>
+                                                    href="{{ route('destroy', $data->id) }}">Remove</a>
                                             </div>
                                         </td>
                                     </tr>
