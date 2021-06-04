@@ -21,7 +21,7 @@ class AdminSeeder extends Seeder
         for ($i = 1; $i <= 3; $i++) {
             DB::table('admin')->insert(array(
                 'name' => $faker->name,
-                'avatar' => 'avatars/default.png',
+                'avatar' => 'avatars/default.svg',
                 'username' => $faker->userName,
                 'password' => Hash::make("admin$i"),
             ));

@@ -126,6 +126,11 @@
                                                     value="{{ $guru->name }}">
                                             </div>
                                             <div class="form-group mb-3">
+                                                <label for="email">Email</label>
+                                                <input type="email" id="email" class="form-control" name="email"
+                                                    value="{{ $guru->email }}">
+                                            </div>
+                                            <div class="form-group mb-3">
                                                 <label for="simple-select2">Kelas</label>
                                                 <select class="form-control select2" id="simple-select2" name="role">
                                                     <optgroup label="Jabatan">
@@ -184,13 +189,15 @@
                                                     <label for="time-input2">Tempat</label>
                                                     <div class="input-group">
                                                         <input type="text" class="form-control time-input" id="time-input2"
-                                                            placeholder="" aria-describedby="button-addon2" value="{{ $siswa->tempat_lahir }}">
+                                                            placeholder="" aria-describedby="button-addon2"
+                                                            value="{{ $siswa->tempat_lahir }}">
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-8">
                                                     <label for="date-input1">Tanggal Lahir</label>
                                                     <div class="input-group">
-                                                        <input class="form-control" id="example-date" type="text" name="date" value="{{ $siswa->tanggal_lahir->format('D/M/Y') }}">
+                                                        <input class="form-control" id="example-date" type="text" name="date"
+                                                            value="{{ $siswa->tanggal_lahir->format('D/M/Y') }}">
                                                         <div class="input-group-append">
                                                             <div class="input-group-text" id="button-addon-date"><span
                                                                     class="fe fe-calendar fe-16"></span></div>
@@ -201,7 +208,8 @@
 
                                             <div class="form-group mb-3">
                                                 <label for="simpleinput">Photo</label>
-                                                <input type="file" id="simpleinput" class="form-control border-0" name='avatar' value="{{ $siswa->avatar }}">
+                                                <input type="file" id="simpleinput" class="form-control border-0" name='avatar'
+                                                    value="{{ $siswa->avatar }}">
                                             </div>
                                         </div> <!-- /.col -->
                                     </div>
