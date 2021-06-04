@@ -7,6 +7,11 @@ use App\Models\Kelas;
 use App\Models\Role;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class TableSiswaController extends Controller
 {
@@ -38,7 +43,55 @@ class TableSiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = Validator::make($request->all(), [
+            'nipd' => 'required|numeric',
+            'name' => 'required|string',
+            'tempat_lahir' => 'required|string',
+            'tanggal_lahir' =>'require|date',
+            'id_kelas' => 'required|numeric',
+        ]);
+
+        if ($validate->fails()) {
+            return redirect()->back()
+                ->withErrors($validate);
+        }
+
+        $tanggal_lahir = explode('@', $request->email);
+
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $fileName = time() . '.' . $avatar->getClientOriginalExtension();
+            $avatar_resize = Image::make($avatar->getRealPath());
+            $avatar_resize->fit(150);
+
+            // Check if folder not exists
+            if (!File::exists(public_path('avatars/siswa'))) {
+                // make the folder
+                File::makeDirectory(public_path('avatars/siswa'), 0777, true, true);
+            }
+            $avatar_resize->save(public_path('avatars/siswa/' . $fileName));
+            Siswa::create([
+                'nipd' => $request->nipd,
+                'name' => $request->name,
+                'tempat_lahir' => $request->tempat_lahir,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'avatar' => $request->avatar,
+                'id_kelas' => $request->id_kelas,
+                'password' => Hash::make($tanggal_lahir[0]),
+            ]);
+        } else {
+            siswa::create([
+                'nip' => $request->nip,
+                'name' => $request->name,
+                'tempat_lahir' => $request->tempat_lahir,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'avatar' => 'avatars/default.png',
+                'role' => $request->role,
+                'password' => Hash::make($tanggal_lahir[0]),
+            ]);
+        }
+
+        return redirect()->route(Auth::getDefaultDriver() . '.siswa.index');
     }
 
     /**
@@ -89,8 +142,9 @@ class TableSiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Siswa $siswa)
     {
-        //
+        $siswa->delete();
+        return redirect()->back();
     }
 }

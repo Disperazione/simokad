@@ -78,6 +78,10 @@
                                         <td>{{ $data->tempat_lahir }},
                                             {{ \Carbon\Carbon::parse($data->tanggal_lahir)->format('d-m-Y') }}</td>
                                         <td>
+                                            <form action="{{ route(Auth::getDefaultDriver().'.siswa.destroy', $data->id) }}" method="POST" id="delete{{ $data->id }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                </form>
                                             <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <span class="text-muted sr-only">Action</span>
@@ -87,8 +91,8 @@
                                                     href="{{ route('admin.siswa.show', $data->id) }}">Detail</a>
                                                 <a class="dropdown-item"
                                                     href="{{ route('admin.siswa.edit', $data->id) }}">Edit</a>
-                                                <a class="dropdown-item"
-                                                    href="{{ route('admin.siswa.destroy', $data->id) }}">Remove</a>
+                                                <button class="dropdown-item"
+                                                form="delete{{ $data->id }}" type="submit">Remove</button>
                                             </div>
                                         </td>
                                     </tr>
