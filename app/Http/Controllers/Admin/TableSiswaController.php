@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kelas;
+use App\Models\Role;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
 
@@ -25,7 +27,7 @@ class TableSiswaController extends Controller
      */
     public function create()
     {
-        return view('page.form');
+        return view('page.form', ['kelas' =>Kelas::all()]);
     }
 
     /**
@@ -56,9 +58,9 @@ class TableSiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Siswa $siswa)
     {
-        //
+        return view('page.form', ['siswa' => $siswa, 'kelas' => Kelas::all()]);
     }
 
     /**
@@ -68,9 +70,17 @@ class TableSiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Siswa $siswa)
     {
-        //
+        $siswa->update([
+            'nipd' => $request->nipd,
+            'name' => $request->name,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'kelas' => $request->id_kelas,
+            'avatar' => $request->avatar,
+        ]);
+        return redirect('admin/siswa');
     }
 
     /**

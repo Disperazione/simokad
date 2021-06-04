@@ -47,9 +47,17 @@ class TableGuruController extends Controller
 
         if ($validate->fails()) {
             return redirect()->back()
-                ->withErrors($validate)
-                ->withInput();
+                ->withErrors($validate);
         }
+
+        Guru::create([
+            'nip' => $request['nip'],
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'avatar' => $request['avatar']
+        ]);
+
+        return redirect('admin/guru');
     }
 
     /**
