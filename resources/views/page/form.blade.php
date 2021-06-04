@@ -41,7 +41,7 @@
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label for="simpleinput">Photo</label>
-                                                <input type="file" id="simpleinput" class="form-control border-0" name='photo'>
+                                                <input type="file" id="simpleinput" class="form-control border-0" name='avatar'>
                                             </div>
                                         </div> <!-- /.col -->
                                     </div>

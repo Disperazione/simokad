@@ -31,11 +31,8 @@ Route::middleware('auth:admin')->name('admin.')->prefix('admin')->group(function
         '/guru' => AdminControllerG::class,
         '/siswa' => AdminControllerS::class,
     ]);
-
 });
 
 Route::middleware('auth:guru')->name('guru.')->prefix('guru')->group(function () {
     Route::get('/dashboard', AdminDash::class)->name('dashboard');
 });
-
-Route::get('admin/guru/destroy/{id}', [AdminControllerS::class, 'destroy'])->name('destroy');

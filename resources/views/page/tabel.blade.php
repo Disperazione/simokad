@@ -50,17 +50,20 @@
                                         <td>{{ $data->email }}</td>
                                         <td>{{ $data->GetRole->name }}</td>
                                         <td>
+                                            <form action="{{ route(Auth::getDefaultDriver().'.guru.destroy', $data->id) }}" method="POST" id="delete{{ $data->id }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            </form>
                                             <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <span class="text-muted sr-only">Action</span>
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <a class="dropdown-item"
-                                                    href="{{ route('admin.guru.show', $data->id) }}">Detail</a>
+                                                    href="{{ route(Auth::getDefaultDriver() .'.guru.show', $data->id) }}">Detail</a>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('admin.guru.edit', $data->id) }}">Edit</a>
-                                                <a class="dropdown-item"
-                                                    href="{{ route('destroy', $data->id) }}">Remove</a>
+                                                    href="{{ route(Auth::getDefaultDriver() .'.guru.edit', $data->id) }}">Edit</a>
+                                                <button class="dropdown-item" form="delete{{ $data->id }}" type="submit">Remove</button>
                                             </div>
                                         </td>
                                     </tr>

@@ -16,9 +16,12 @@ class Guru extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'password',
         'avatar',
+        'email',
         'username',
+        'nip',
+        'role',
+        'password',
     ];
     protected $table = 'guru';
 
@@ -30,7 +33,6 @@ class Guru extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'avatar',
         'remember_token',
     ];
 

@@ -6,7 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Guru;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class TableGuruController extends Controller
 {
@@ -42,22 +46,49 @@ class TableGuruController extends Controller
             'nip' => 'required|numeric',
             'name' => 'required|string',
             'email' => 'required|email:rfc,dns',
-            'avatar' => 'required|mimes:jpg,bmp,png',
+            'role' => 'required|numeric',
         ]);
 
         if ($validate->fails()) {
             return redirect()->back()
                 ->withErrors($validate);
         }
+        $username = explode('@', $request->email);
 
-        Guru::create([
-            'nip' => $request['nip'],
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'avatar' => $request['avatar']
-        ]);
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $fileName = time() . '.' . $avatar->getClientOriginalExtension();
+            $avatar_resize = Image::make($avatar->getRealPath());
+            $avatar_resize->fit(150);
 
-        return redirect('admin/guru');
+            // Check if folder not exists
+            if (!File::exists(public_path('avatars/guru'))) {
+                // make the folder
+                File::makeDirectory(public_path('avatars/guru'), 0777, true, true);
+            }
+            $avatar_resize->save(public_path('avatars/guru/' . $fileName));
+            Guru::create([
+                'nip' => $request->nip,
+                'name' => $request->name,
+                'email' => $request->email,
+                'avatar' => $request->avatar,
+                'username' => $username[0],
+                'role' => $request->role,
+                'password' => Hash::make($username[0]),
+            ]);
+        } else {
+            Guru::create([
+                'nip' => $request->nip,
+                'name' => $request->name,
+                'email' => $request->email,
+                'avatar' => 'avatars/default.png',
+                'username' => $username[0],
+                'role' => $request->role,
+                'password' => Hash::make($username[0]),
+            ]);
+        }
+
+        return redirect()->route(Auth::getDefaultDriver() . '.guru.index');
     }
 
     /**
@@ -107,9 +138,9 @@ class TableGuruController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Guru $guru)
     {
-        Guru::find($request->id)->delete();
+        $guru->delete();
         return redirect()->back();
     }
 }
