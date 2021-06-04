@@ -165,7 +165,7 @@
                                         <div class="col">
                                             <div class="form-group mb-3">
                                                 <label for="simpleinput">NIPD</label>
-                                                <input type="text" id="nip" class="form-control" name="nip"
+                                                <input type="text" id="nipd" class="form-control" name="nipd"
                                                     value="{{ $siswa->nipd }}">
                                             </div>
                                             <div class="form-group mb-3">
@@ -188,16 +188,16 @@
                                                 <div class="form-group col-md-4">
                                                     <label for="time-input2">Tempat</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control time-input" id="time-input2"
-                                                            placeholder="" aria-describedby="button-addon2"
+                                                        <input type="text" class="form-control time-input" id="tempat_lahir"
+                                                            placeholder="" aria-describedby="button-addon2" name="tempat_lahir"
                                                             value="{{ $siswa->tempat_lahir }}">
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-8">
                                                     <label for="date-input1">Tanggal Lahir</label>
                                                     <div class="input-group">
-                                                        <input class="form-control" id="example-date" type="text" name="date"
-                                                            value="{{ $siswa->tanggal_lahir->format('D/M/Y') }}">
+                                                        <input class="form-control" id="tanggal_lahir" type="date" name="tanggal_lahir"
+                                                            value="{{ $siswa->tanggal_lahir}}">
                                                         <div class="input-group-append">
                                                             <div class="input-group-text" id="button-addon-date"><span
                                                                     class="fe fe-calendar fe-16"></span></div>
@@ -208,7 +208,7 @@
 
                                             <div class="form-group mb-3">
                                                 <label for="simpleinput">Photo</label>
-                                                <input type="file" id="simpleinput" class="form-control border-0" name='avatar'
+                                                <input type="file" id="avatar" class="form-control border-0" name='avatar'
                                                     value="{{ $siswa->avatar }}">
                                             </div>
                                         </div> <!-- /.col -->
