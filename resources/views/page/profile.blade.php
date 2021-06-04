@@ -15,13 +15,14 @@
                 <div class="col">
                     <div class="row align-items-center">
                         <div class="col-md-7">
-                            <h4 class="mb-1">Kasusra Galur Hidayanto</h4>
+                            <h4 class="mb-1">{{ Auth::guard('admin')->user()->name }}</h4>
                             <p class="small mb-3"><span class="badge badge-dark">ADMIN</span></p>
                         </div>
                     </div>
                     <div class="row mb-4">
                         <div class="col-md-7">
-                            <p class="text-muted"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit
+                            <p class="text-muted"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
+                                blandit
                                 nisl ullamcorper, rutrum metus in, congue lectus. In hac habitasse platea dictumst. Cras
                                 urna quam, malesuada vitae risus at, pretium blandit sapien. </p>
                         </div>

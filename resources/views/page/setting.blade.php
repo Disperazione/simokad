@@ -15,23 +15,20 @@
                         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
                             aria-controls="profile" aria-selected="false">Security</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
-                            aria-controls="contact" aria-selected="false">Notifications</a>
                     </li>
                 </ul>
-                <form>
+                <form action="" method="POST">
                     <div class="row mt-5 align-items-center">
                         <div class="col-md-3 text-center mb-5">
                             <div class="avatar avatar-xl">
-                                <img src="{{ asset('avatars/default.svg') }}" alt="Avatar"
+                                <img src="{{ asset(Auth::guard('admin')->user()->avatar) }}" alt="Avatar"
                                     class="avatar-img rounded-circle">
                             </div>
                         </div>
                         <div class="col">
                             <div class="row align-items-center">
                                 <div class="col-md-7">
-                                    <h4 class="mb-1">Brown, Asher</h4>
+                                    <h4 class="mb-1">{{ Auth::guard('admin')->user()->name }}</h4>
                                     <p class="small mb-3"><span class="badge badge-dark">ADMIN</span></p>
                                 </div>
                             </div>
@@ -52,8 +49,8 @@
                     <hr class="my-4">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="firstname">Firstname</label>
-                            <input type="text" id="firstname" class="form-control" placeholder="Brown">
+                            <label for="firstname">Name</label>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Brown">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="lastname">Lastname</label>

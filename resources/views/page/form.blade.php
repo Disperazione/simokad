@@ -59,7 +59,7 @@
                                         <div class="col">
                                             <div class="form-group mb-3">
                                                 <label for="simpleinput">NIPD</label>
-                                                <input type="text" id="nip" class="form-control" name="nip">
+                                                <input type="text" id="nipd" class="form-control" name="nipd">
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label for="simpleinput">Nama</label>
@@ -81,13 +81,13 @@
                                                     <label for="time-input2">Tempat</label>
                                                     <div class="input-group">
                                                         <input type="text" class="form-control time-input" id="time-input2"
-                                                            placeholder="" aria-describedby="button-addon2">
+                                                            placeholder="" aria-describedby="button-addon2" name="tempat_lahir">
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-8">
                                                     <label for="date-input1">Tanggal Lahir</label>
                                                     <div class="input-group">
-                                                        <input class="form-control" id="example-date" type="date" name="date">
+                                                        <input class="form-control" id="example-date" type="date" name="tanggal_lahir">
                                                         <div class="input-group-append">
                                                             <div class="input-group-text" id="button-addon-date"><span
                                                                     class="fe fe-calendar fe-16"></span></div>
