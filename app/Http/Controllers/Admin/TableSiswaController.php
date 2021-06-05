@@ -43,20 +43,20 @@ class TableSiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = Validator::make($request->all(), [
-            'nipd' => 'required|numeric',
-            'name' => 'required|string',
-            'tempat_lahir' => 'required|string',
-            'tanggal_lahir' =>'require|date',
-            'id_kelas' => 'required|numeric',
-        ]);
+        // $validate = Validator::make($request->all(), [
+        //     'nipd' => 'required|numeric',
+        //     'name' => 'required|string',
+        //     'tempat_lahir' => 'required|string',
+        //     'tanggal_lahir' =>'require|Date',
+        //     'id_kelas' => 'required|numeric',
+        // ]);
 
-        if ($validate->fails()) {
-            return redirect()->back()
-                ->withErrors($validate);
-        }
+        // if ($validate->fails()) {
+        //     return redirect()->back()
+        //         ->withErrors($validate);
+        // }
 
-        $tanggal_lahir = explode('@', $request->email);
+        $password = explode('admin', $request->username);
 
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
@@ -77,17 +77,17 @@ class TableSiswaController extends Controller
                 'tanggal_lahir' => $request->tanggal_lahir,
                 'avatar' => $request->avatar,
                 'id_kelas' => $request->id_kelas,
-                'password' => Hash::make($tanggal_lahir[0]),
+                'password' => Hash::make($password[0]),
             ]);
         } else {
             siswa::create([
-                'nip' => $request->nip,
+                'nipd' => $request->nipd,
                 'name' => $request->name,
                 'tempat_lahir' => $request->tempat_lahir,
                 'tanggal_lahir' => $request->tanggal_lahir,
                 'avatar' => 'avatars/default.png',
-                'role' => $request->role,
-                'password' => Hash::make($tanggal_lahir[0]),
+                'id_kelas' => $request->id_kelas,
+                'password' => Hash::make($password[0]),
             ]);
         }
 
