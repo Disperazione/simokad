@@ -47,13 +47,16 @@
                 </ul>
             </li>
             <li class="nav-item dropdown">
-                <a href="#profile" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                <a href="#profile" data-toggle="collapse" aria-expanded="false"
+                    class="dropdown-toggle nav-link {{ Request::is(Auth::getDefaultDriver() . '/mapel', Auth::getDefaultDriver() . '/mapel/*') ? 'active' : '' }}">
                     <i class="fe fe-layers fe-16"></i>
                     <span class="ml-3 item-text">Akademik</span>
                 </a>
                 <ul class="collapse list-unstyled pl-4 w-100" id="profile">
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href=""><span class="ml-1 item-text">Mata
+                        <a class="nav-link pl-3 {{ Request::routeIs(Auth::getDefaultDriver() . '.mapel.index') ? 'active' : '' }}"
+                            href="{{ route(Auth::getDefaultDriver() . '.mapel.index') }}"><span
+                                class="ml-1 item-text">Mata
                                 Pelajaran</span>
                         </a>
                     </li>

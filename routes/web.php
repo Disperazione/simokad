@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TableGuruController as AdminControllerG;
 use App\Http\Controllers\Admin\TableKelasController as AdminControllerK;
 use App\Http\Controllers\Admin\TableSiswaController as AdminControllerS;
+use App\Http\Controllers\Admin\TableMapelController as AdminControllerM;
 use App\Http\Controllers\AuthLogin;
 use App\Http\Controllers\AuthLogout;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,7 @@ Route::middleware('auth:admin')->name('admin.')->prefix('admin')->group(function
         '/guru' => AdminControllerG::class,
         '/siswa' => AdminControllerS::class,
         '/kelas' => AdminControllerK::class,
+        '/mapel' => AdminControllerM::class,
     ]);
 });
 

@@ -8,8 +8,14 @@
             @if (Request::is('*/guru'))
                 <h2 class="mb-2 page-title">Data Guru</h2>
                 <img class="" src="{{ asset('images/guru.svg') }}" width="200" alt="Guru">
+            @elseif (Request::is('*/kelas'))
+                <h2 class="mb-2 page-title">Data Kelas</h2>
+                <img class="" src="{{ asset('images/siswa.svg') }}" width="200" alt="Siswa">
             @elseif (Request::is('*/siswa'))
                 <h2 class="mb-2 page-title">Data Siswa</h2>
+                <img class="" src="{{ asset('images/siswa.svg') }}" width="200" alt="Siswa">
+            @elseif (Request::is('*/mapel'))
+                <h2 class="mb-2 page-title">Data Mapel</h2>
                 <img class="" src="{{ asset('images/siswa.svg') }}" width="200" alt="Siswa">
             @endif
         @endauth
@@ -21,6 +27,7 @@
                     <thead>
                         <tr>
                             @auth('admin')
+                                {{-- table guru --}}
                                 @if (Request::is('*/guru'))
                                     <th>No.</th>
                                     <th>NIP</th>
@@ -28,12 +35,14 @@
                                     <th>EMAIl</th>
                                     <th>JABATAN</th>
                                     <th>ACTION</th>
+                                    {{-- table kelas --}}
                                 @elseif (Request::is('*/kelas'))
                                     <th>No.</th>
                                     <th>Walikelas</th>
                                     <th>Jurusan</th>
                                     <th>KELAS</th>
                                     <th>ACTION</th>
+                                    {{-- table siswa --}}
                                 @elseif (Request::is('*/siswa'))
                                     <th>No.</th>
                                     <th>NIPD</th>
@@ -41,12 +50,21 @@
                                     <th>KELAS</th>
                                     <th>TEMPAT & TANGGAL LAHIR</th>
                                     <th>ACTION</th>
+                                    {{-- Table mapel --}}
+                                @elseif (Request::is('*/mapel'))
+                                    <th>No.</th>
+                                    <th>MATA PELAJARAN</th>
+                                    <th>GURU</th>
+                                    <th>PAKET</th>
+                                    <th>KELOMPOK BELAJAR</th>
+                                    <th>ACTION</th>
                                 @endif
                             @endauth
                         </tr>
                     </thead>
                     <tbody>
                         @auth('admin')
+                            {{-- guru --}}
                             @if (Request::is('*/guru'))
                                 @foreach ($guru as $data)
                                     <tr>
@@ -76,6 +94,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                {{-- kelas --}}
                             @elseif (Request::is('*/kelas'))
                                 @foreach ($kelas as $data)
                                     <tr>
@@ -105,6 +124,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                {{-- siswa --}}
                             @elseif (Request::is('*/siswa'))
                                 @foreach ($siswa as $data)
                                     <tr>
@@ -130,6 +150,37 @@
                                                     href="{{ route('admin.siswa.show', $data->id) }}">Detail</a>
                                                 <a class="dropdown-item"
                                                     href="{{ route('admin.siswa.edit', $data->id) }}">Edit</a>
+                                                <button class="dropdown-item" form="delete{{ $data->id }}"
+                                                    type="submit">Remove</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                {{-- table mapel --}}
+                            @elseif (Request::is('*/mapel'))
+                                @foreach ($kelas as $data)
+                                    <tr>
+                                        <td>Kosong asli</td>
+                                        <td>Kosong asli</td>
+                                        <td>Kosong asli</td>
+                                        <td>Kosong asli</td>
+                                        <td>Sumpah kosong</td>
+                                        <td>
+                                            <form
+                                                action="{{ route(Auth::getDefaultDriver() . '.mapel.destroy', $data->id) }}"
+                                                method="POST" id="delete{{ $data->id }}">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                            <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="text-muted sr-only">Action</span>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item"
+                                                    href="{{ route('admin.mapel.show', $data->id) }}">Detail</a>
+                                                <a class="dropdown-item"
+                                                    href="{{ route('admin.mapel.edit', $data->id) }}">Edit</a>
                                                 <button class="dropdown-item" form="delete{{ $data->id }}"
                                                     type="submit">Remove</button>
                                             </div>
