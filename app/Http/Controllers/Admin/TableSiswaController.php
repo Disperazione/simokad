@@ -55,9 +55,7 @@ class TableSiswaController extends Controller
             return redirect()->back()
                 ->withErrors($validate);
         }
-
-        $tanggal_lahir = explode('@', $request->email);
-
+        dd($request->all());
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
             $fileName = time() . '.' . $avatar->getClientOriginalExtension();

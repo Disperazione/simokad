@@ -58,11 +58,11 @@
                                     <div class="row">
                                         <div class="col">
                                             <div class="form-group mb-3">
-                                                <label for="simpleinput">NIPD</label>
+                                                <label for="nip">NIPD</label>
                                                 <input type="text" id="nip" class="form-control" name="nip">
                                             </div>
                                             <div class="form-group mb-3">
-                                                <label for="simpleinput">Nama</label>
+                                                <label for="name">Nama</label>
                                                 <input type="text" id="name" class="form-control" name="name">
                                             </div>
                                             <div class="form-group mb-3">
@@ -78,9 +78,9 @@
 
                                             <div class="form-row">
                                                 <div class="form-group col-md-4">
-                                                    <label for="time-input2">Tempat</label>
+                                                    <label for="tempat">Tempat</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control time-input" id="time-input2"
+                                                        <input type="text" class="form-control time-input" id="tempat"
                                                             placeholder="" aria-describedby="button-addon2">
                                                     </div>
                                                 </div>
@@ -169,8 +169,8 @@
                                                     value="{{ $siswa->name }}">
                                             </div>
                                             <div class="form-group mb-3">
-                                                <label for="simple-select2">Kelas</label>
-                                                <select class="form-control select2" id="simple-select2" name="id_kelas">
+                                                <label for="id_kelas">Kelas</label>
+                                                <select class="form-control select2" id="id_kelas" name="id_kelas">
                                                     <optgroup label="Kelas">
                                                         @foreach ($kelas as $kel)
                                                             <option value="{{ $kel->id_kelas }}" @if ($siswa->Kelas === $siswa->id) selected @endif>
