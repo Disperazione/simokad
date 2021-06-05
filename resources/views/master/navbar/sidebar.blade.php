@@ -23,14 +23,25 @@
             <span>Data</span>
         </p>
         <ul class="navbar-nav flex-fill w-100 mb-2">
-            <li class="nav-item dropdown">
-                <a href="#ui-elements" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+            <li
+                class="nav-item dropdown {{ Request::is(Auth::getDefaultDriver() . '/kelas', Auth::getDefaultDriver() . '/kelas/*') ? 'active' : '' }}">
+                <a href="#ui-elements" data-toggle="collapse" aria-expanded="false"
+                    class="dropdown-toggle nav-link {{ Request::is(Auth::getDefaultDriver() . '/kelas', Auth::getDefaultDriver() . '/kelas/*') ? 'active' : '' }}">
                     <i class="fe fe-grid fe-16"></i>
                     <span class="ml-3 item-text">Data</span>
                 </a>
                 <ul class="collapse list-unstyled pl-4 w-100" id="ui-elements">
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href=""><span class="ml-1 item-text">Kelas</span>
+                        <a class="nav-link pl-3 {{ Request::routeIs(Auth::getDefaultDriver() . '.kelas.create') ? 'active' : '' }}"
+                            href="{{ route(Auth::getDefaultDriver() . '.kelas.create') }}">
+                            <i class="fe fe-plus fe-16 text-success"></i>
+                            <span class="ml-1 item-text">Tambah Data</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3 {{ Request::routeIs(Auth::getDefaultDriver() . '.kelas.index') ? 'active' : '' }}"
+                            href="{{ route(Auth::getDefaultDriver() . '.kelas.index') }}"><span
+                                class="ml-1 item-text">Kelas</span>
                         </a>
                     </li>
                 </ul>
@@ -79,7 +90,8 @@
                     </a>
                     <ul class="collapse list-unstyled pl-4 w-100" id="TabelGuru">
                         <li class="nav-item">
-                            <a class="nav-link pl-3 {{ Request::routeIs(Auth::getDefaultDriver() . '.guru.create') ? 'active' : '' }}" href="{{ route(Auth::getDefaultDriver() . '.guru.create') }}">
+                            <a class="nav-link pl-3 {{ Request::routeIs(Auth::getDefaultDriver() . '.guru.create') ? 'active' : '' }}"
+                                href="{{ route(Auth::getDefaultDriver() . '.guru.create') }}">
                                 <i class="fe fe-plus fe-16 text-success"></i>
                                 <span class="ml-1 item-text">Tambah Data</span>
                             </a>

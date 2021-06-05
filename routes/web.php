@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DataDashboard as AdminDash;
 use App\Http\Controllers\admin\ProfileController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TableGuruController as AdminControllerG;
+use App\Http\Controllers\Admin\TableKelasController as AdminControllerK;
 use App\Http\Controllers\Admin\TableSiswaController as AdminControllerS;
 use App\Http\Controllers\AuthLogin;
 use App\Http\Controllers\AuthLogout;
@@ -34,6 +35,7 @@ Route::middleware('auth:admin')->name('admin.')->prefix('admin')->group(function
     Route::resources([
         '/guru' => AdminControllerG::class,
         '/siswa' => AdminControllerS::class,
+        '/kelas' => AdminControllerK::class,
     ]);
 });
 
