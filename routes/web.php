@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\DataDashboard as AdminDash;
+use App\Http\Controllers\admin\ProfileController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TableGuruController as AdminControllerG;
+use App\Http\Controllers\Admin\TableKelasController as AdminControllerK;
 use App\Http\Controllers\Admin\TableSiswaController as AdminControllerS;
 use App\Http\Controllers\AuthLogin;
 use App\Http\Controllers\AuthLogout;
@@ -26,10 +29,13 @@ Route::post('/', AuthLogin::class);
 Route::post('/logout', AuthLogout::class)->name('logout');
 Route::middleware('auth:admin')->name('admin.')->prefix('admin')->group(function () {
     Route::get('/dashboard', AdminDash::class)->name('dashboard');
+    Route::get('/profile', ProfileController::class)->name('profile');
+    Route::get('/setting', SettingController::class)->name('setting');
 
     Route::resources([
         '/guru' => AdminControllerG::class,
         '/siswa' => AdminControllerS::class,
+        '/kelas' => AdminControllerK::class,
     ]);
 });
 

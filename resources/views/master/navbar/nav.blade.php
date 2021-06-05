@@ -27,8 +27,8 @@
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Profile</a>
-                <a class="dropdown-item" href="#">Settings</a>
+                <a class="dropdown-item" href="{{ route(Auth::getDefaultDriver() . '.profile') }}">Profile</a>
+                <a class="dropdown-item" href="{{ route(Auth::getDefaultDriver() . '.setting') }}">Settings</a>
                 <a class="dropdown-item" href="javascript:void()"
                     onclick="document.getElementById('logout').submit();">Logout</a>
             </div>

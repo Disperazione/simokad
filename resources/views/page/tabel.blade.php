@@ -28,6 +28,12 @@
                                     <th>EMAIl</th>
                                     <th>JABATAN</th>
                                     <th>ACTION</th>
+                                @elseif (Request::is('*/kelas'))
+                                    <th>No.</th>
+                                    <th>Walikelas</th>
+                                    <th>Jurusan</th>
+                                    <th>KELAS</th>
+                                    <th>ACTION</th>
                                 @elseif (Request::is('*/siswa'))
                                     <th>No.</th>
                                     <th>NIPD</th>
@@ -50,9 +56,10 @@
                                         <td>{{ $data->email }}</td>
                                         <td>{{ $data->GetRole->name }}</td>
                                         <td>
-                                            <form action="{{ route(Auth::getDefaultDriver().'.guru.destroy', $data->id) }}" method="POST" id="delete{{ $data->id }}">
-                                            @csrf
-                                            @method('DELETE')
+                                            <form action="{{ route(Auth::getDefaultDriver() . '.guru.destroy', $data->id) }}"
+                                                method="POST" id="delete{{ $data->id }}">
+                                                @csrf
+                                                @method('DELETE')
                                             </form>
                                             <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -60,10 +67,40 @@
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <a class="dropdown-item"
-                                                    href="{{ route(Auth::getDefaultDriver() .'.guru.show', $data->id) }}">Detail</a>
+                                                    href="{{ route(Auth::getDefaultDriver() . '.guru.show', $data->id) }}">Detail</a>
                                                 <a class="dropdown-item"
-                                                    href="{{ route(Auth::getDefaultDriver() .'.guru.edit', $data->id) }}">Edit</a>
-                                                <button class="dropdown-item" form="delete{{ $data->id }}" type="submit">Remove</button>
+                                                    href="{{ route(Auth::getDefaultDriver() . '.guru.edit', $data->id) }}">Edit</a>
+                                                <button class="dropdown-item" form="delete{{ $data->id }}"
+                                                    type="submit">Remove</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @elseif (Request::is('*/kelas'))
+                                @foreach ($kelas as $data)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $data->GetGuru->name }}</td>
+                                        <td>{{ $data->name }}</td>
+                                        <td>{{ $data->slug }}</td>
+                                        <td>
+                                            <form
+                                                action="{{ route(Auth::getDefaultDriver() . '.kelas.destroy', $data->id) }}"
+                                                method="POST" id="delete{{ $data->id }}">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                            <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="text-muted sr-only">Action</span>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item"
+                                                    href="{{ route(Auth::getDefaultDriver() . '.kelas.show', $data->id) }}">Detail</a>
+                                                <a class="dropdown-item"
+                                                    href="{{ route(Auth::getDefaultDriver() . '.kelas.edit', $data->id) }}">Edit</a>
+                                                <button class="dropdown-item" form="delete{{ $data->id }}"
+                                                    type="submit">Remove</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -78,10 +115,12 @@
                                         <td>{{ $data->tempat_lahir }},
                                             {{ \Carbon\Carbon::parse($data->tanggal_lahir)->format('d-m-Y') }}</td>
                                         <td>
-                                            <form action="{{ route(Auth::getDefaultDriver().'.siswa.destroy', $data->id) }}" method="POST" id="delete{{ $data->id }}">
+                                            <form
+                                                action="{{ route(Auth::getDefaultDriver() . '.siswa.destroy', $data->id) }}"
+                                                method="POST" id="delete{{ $data->id }}">
                                                 @csrf
                                                 @method('DELETE')
-                                                </form>
+                                            </form>
                                             <button class="btn btn-sm dropdown-toggle more-horizontal" type="button"
                                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <span class="text-muted sr-only">Action</span>
