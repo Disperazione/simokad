@@ -87,7 +87,8 @@
                                                 <div class="form-group col-md-8">
                                                     <label for="date-input1">Tanggal Lahir</label>
                                                     <div class="input-group">
-                                                        <input class="form-control" id="example-date" type="date" name="tanggal_lahir">
+                                                        <input class="form-control" id="example-date" type="date"
+                                                            name="tanggal_lahir">
                                                         <div class="input-group-append">
                                                             <div class="input-group-text" id="button-addon-date"><span
                                                                     class="fe fe-calendar fe-16"></span></div>
@@ -141,7 +142,6 @@
                                                     </optgroup>
                                                 </select>
                                             </div>
-
                                             <div class="form-group mb-3">
                                                 <label for="simpleinput">Photo</label>
                                                 <input type="file" id="simpleinput" class="form-control border-0" name="avatar"
@@ -196,8 +196,8 @@
                                                 <div class="form-group col-md-8">
                                                     <label for="date-input1">Tanggal Lahir</label>
                                                     <div class="input-group">
-                                                        <input class="form-control" id="tanggal_lahir" type="date" name="tanggal_lahir"
-                                                            value="{{ $siswa->tanggal_lahir}}">
+                                                        <input class="form-control" id="tanggal_lahir" type="date"
+                                                            name="tanggal_lahir" value="{{ $siswa->tanggal_lahir }}">
                                                         <div class="input-group-append">
                                                             <div class="input-group-text" id="button-addon-date"><span
                                                                     class="fe fe-calendar fe-16"></span></div>
@@ -205,7 +205,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <div class="form-group mb-3">
                                                 <label for="simpleinput">Photo</label>
                                                 <input type="file" id="avatar" class="form-control border-0" name='avatar'
@@ -236,6 +235,7 @@
 
     </script>
 @endpush
+
 @push('css')
     <link rel="stylesheet" href="{{ asset('css/select2.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/select2-bootstrap4.css') }}" />
