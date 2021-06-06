@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Kelas;
+use App\Models\Mapel;
 
 class TableMapelController extends Controller
 {
@@ -15,7 +16,7 @@ class TableMapelController extends Controller
      */
     public function index()
     {
-        return view('page.tabel',['kelas' => Kelas::select('id', 'id_walikelas', 'name',  'slug',)->get()]);
+        return view('page.tabel',['mapel' => Mapel::select('id', 'name')->get()]);
     }
 
     /**

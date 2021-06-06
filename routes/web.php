@@ -43,4 +43,13 @@ Route::middleware('auth:admin')->name('admin.')->prefix('admin')->group(function
 
 Route::middleware('auth:guru')->name('guru.')->prefix('guru')->group(function () {
     Route::get('/dashboard', AdminDash::class)->name('dashboard');
+    Route::get('/profile', ProfileController::class)->name('profile');
+    Route::get('/setting', SettingController::class)->name('setting');
+    
+    Route::resources([
+        '/guru' => AdminControllerG::class,
+        '/siswa' => AdminControllerS::class,
+        '/kelas' => AdminControllerK::class,
+        '/mapel' => AdminControllerM::class,
+    ]);
 });

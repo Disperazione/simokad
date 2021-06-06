@@ -158,13 +158,12 @@
                                 @endforeach
                                 {{-- table mapel --}}
                             @elseif (Request::is('*/mapel'))
-                                @foreach ($kelas as $data)
+                                @foreach ($mapel as $data)
                                     <tr>
-                                        <td>Kosong asli</td>
-                                        <td>Kosong asli</td>
-                                        <td>Kosong asli</td>
-                                        <td>Kosong asli</td>
-                                        <td>Sumpah kosong</td>
+                                        <td>{{ $data->iteration }}</td>
+                                        <td>{{ $data->name }}</td>
+                                        <td>{{ $data->GetGuru->name }}</td>
+                                        <td>{{ $data->GetKelas->name }}</td>
                                         <td>
                                             <form
                                                 action="{{ route(Auth::getDefaultDriver() . '.mapel.destroy', $data->id) }}"

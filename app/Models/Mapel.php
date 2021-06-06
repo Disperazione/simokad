@@ -8,17 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Mapel extends Model
 {
     use HasFactory;
-    use HasFactory;
     protected $fillable = [
-        'id_walikelas',
         'name',
-        'slug',
     ];
 
     protected $table = 'kelas';
 
     public function GetGuru()
     {
-        return $this->belongsTo(Guru::class, 'id_walikelas');
+        return $this->belongsTo(Guru::class, 'id_guru');
+    }
+
+    public function GetKelas(){
+        return $this->belongsTo(Kelas::class, 'id_kelas');
     }
 }

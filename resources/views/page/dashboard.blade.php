@@ -80,7 +80,8 @@
 
     {{-- chart --}}
     <div class="row" style="margin-top: 5%">
-        <div class="col-12 col-md-6">
+        @auth ('admin')
+            <div class="col-12 col-md-6">
             <div class="card shadow">
                 <div class="card-header">
                     <strong class="card-title mb-0">Jumlah User</strong>
@@ -90,6 +91,7 @@
                 </div> <!-- /.card-body -->
             </div> <!-- /.card -->
         </div> <!-- /. col -->
+        @endauth
 
         <div class="col-12 col-md-6">
             <div class="card shadow mb-4">
