@@ -5,8 +5,8 @@ use App\Http\Controllers\admin\ProfileController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TableGuruController as AdminControllerG;
 use App\Http\Controllers\Admin\TableKelasController as AdminControllerK;
-use App\Http\Controllers\Admin\TableSiswaController as AdminControllerS;
 use App\Http\Controllers\Admin\TableMapelController as AdminControllerM;
+use App\Http\Controllers\Admin\TableSiswaController as AdminControllerS;
 use App\Http\Controllers\AuthLogin;
 use App\Http\Controllers\AuthLogout;
 use Illuminate\Support\Facades\Route;
@@ -39,13 +39,16 @@ Route::middleware('auth:admin')->name('admin.')->prefix('admin')->group(function
         '/kelas' => AdminControllerK::class,
         '/mapel' => AdminControllerM::class,
     ]);
+    Route::get('/nilai', function () {
+        return view('page.exports.nilai');
+    });
 });
 
 Route::middleware('auth:guru')->name('guru.')->prefix('guru')->group(function () {
     Route::get('/dashboard', AdminDash::class)->name('dashboard');
     Route::get('/profile', ProfileController::class)->name('profile');
     Route::get('/setting', SettingController::class)->name('setting');
-    
+
     Route::resources([
         '/guru' => AdminControllerG::class,
         '/siswa' => AdminControllerS::class,
