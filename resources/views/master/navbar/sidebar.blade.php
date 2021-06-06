@@ -109,30 +109,49 @@
                         </li>
                     </ul>
                 </li>
+                
+                <li
+                    class="nav-item dropdown {{ Request::is(Auth::getDefaultDriver() . '/siswa', Auth::getDefaultDriver() . '/siswa/*') ? 'active' : '' }}">
+                    <a href="#TabelSiswa" data-toggle="collapse" aria-expanded="false"
+                        class="dropdown-toggle nav-link {{ Request::is(Auth::getDefaultDriver() . '/siswa', Auth::getDefaultDriver() . '/siswa/*') ? 'active' : '' }}">
+                        <i class="fe fe-users fe-16"></i>
+                        <span class="ml-3 item-text">Siswa</span>
+                    </a>
+                    <ul class="collapse list-unstyled pl-4 w-100" id="TabelSiswa">
+                        <li class="nav-item">
+                            <a class="nav-link pl-3 {{ Request::routeIs(Auth::getDefaultDriver() . '.siswa.create') ? 'active' : '' }}"
+                                href="{{ route(Auth::getDefaultDriver() . '.siswa.create') }}">
+                                <i class="fe fe-plus fe-16 text-success"></i>
+                                <span class="ml-1 item-text">Tambah Data</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pl-3 {{ Request::is(Auth::getDefaultDriver() . '/siswa') ? 'active' : '' }}"
+                                href="{{ route(Auth::getDefaultDriver() . '.siswa.index') }}">
+                                <span class="ml-1 item-text">Data Siswa</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             @endauth
-            <li
-                class="nav-item dropdown {{ Request::is(Auth::getDefaultDriver() . '/siswa', Auth::getDefaultDriver() . '/siswa/*') ? 'active' : '' }}">
-                <a href="#TabelSiswa" data-toggle="collapse" aria-expanded="false"
-                    class="dropdown-toggle nav-link {{ Request::is(Auth::getDefaultDriver() . '/siswa', Auth::getDefaultDriver() . '/siswa/*') ? 'active' : '' }}">
-                    <i class="fe fe-users fe-16"></i>
-                    <span class="ml-3 item-text">Siswa</span>
+            <li class="nav-item dropdown">
+                <a href="#program" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                    <i class="fe fe-layers fe-16"></i>
+                    <span class="ml-3 item-text">Program</span>
                 </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="TabelSiswa">
+                <ul class="collapse list-unstyled pl-4 w-100" id="program">
                     <li class="nav-item">
-                        <a class="nav-link pl-3 {{ Request::routeIs(Auth::getDefaultDriver() . '.siswa.create') ? 'active' : '' }}"
-                            href="{{ route(Auth::getDefaultDriver() . '.siswa.create') }}">
-                            <i class="fe fe-plus fe-16 text-success"></i>
-                            <span class="ml-1 item-text">Tambah Data</span>
+                        <a class="nav-link pl-3" href="">
+                            <span class="ml-1 item-text">Persemester</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-3 {{ Request::is(Auth::getDefaultDriver() . '/siswa') ? 'active' : '' }}"
-                            href="{{ route(Auth::getDefaultDriver() . '.siswa.index') }}">
-                            <span class="ml-1 item-text">Data Siswa</span>
+                        <a class="nav-link pl-3" href="">
+                            <span class="ml-1 item-text">Pertahun</span>
                         </a>
                     </li>
                 </ul>
-            </li>
+        </ul>
         </ul>
         <p class="text-muted nav-heading mt-4 mb-1">
             <span>Etc</span>
