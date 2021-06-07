@@ -32,7 +32,7 @@ class TableSiswaController extends Controller
      */
     public function create()
     {
-        return view('page.form', ['kelas' =>Kelas::all()]);
+        return view('page.form', ['kelas' => Kelas::all()]);
     }
 
     /**
@@ -100,9 +100,10 @@ class TableSiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Siswa $siswa)
     {
-        //
+
+        return view('page.detail', ['siswa' => $siswa]);
     }
 
     /**

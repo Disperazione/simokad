@@ -15,7 +15,10 @@ class Kelas extends Model
     ];
 
     protected $table = 'kelas';
-
+    public function getSiswa()
+    {
+        return $this->hasMany(Siswa::class, 'id_kelas', 'id');
+    }
     public function GetGuru()
     {
         return $this->belongsTo(Guru::class, 'id_walikelas');

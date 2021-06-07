@@ -109,7 +109,7 @@
                         </li>
                     </ul>
                 </li>
-                
+
                 <li
                     class="nav-item dropdown {{ Request::is(Auth::getDefaultDriver() . '/siswa', Auth::getDefaultDriver() . '/siswa/*') ? 'active' : '' }}">
                     <a href="#TabelSiswa" data-toggle="collapse" aria-expanded="false"
@@ -135,23 +135,6 @@
                 </li>
             @endauth
             <li class="nav-item dropdown">
-                <a href="#program" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fe fe-layers fe-16"></i>
-                    <span class="ml-3 item-text">Program</span>
-                </a>
-                <ul class="collapse list-unstyled pl-4 w-100" id="program">
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="">
-                            <span class="ml-1 item-text">Persemester</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-3" href="">
-                            <span class="ml-1 item-text">Pertahun</span>
-                        </a>
-                    </li>
-                </ul>
-        </ul>
         </ul>
         <p class="text-muted nav-heading mt-4 mb-1">
             <span>Etc</span>
@@ -174,8 +157,8 @@
                 </ul>
         </ul>
         <div class="btn-box w-100 mt-4 mb-1">
-            <a href="https://themeforest.net/item/tinydash-bootstrap-html-admin-dashboard-template/27511269"
-                target="_blank" class="btn mb-2 btn-primary btn-lg btn-block">
+            <a href="https://github.com/Disperazione/simokad" target="_blank"
+                class="btn mb-2 btn-primary btn-lg btn-block">
                 <i class="fe fe-github fe-17 mr-2"></i><span class="small font-weight-bold">Github</span>
             </a>
         </div>

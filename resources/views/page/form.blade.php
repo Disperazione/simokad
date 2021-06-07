@@ -5,8 +5,17 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12">
-                <h2 class="page-title">Tambah Data
-                    {{ Request::routeIs(Auth::getDefaultDriver() . '.guru.create') ? 'Guru' : 'Siswa' }}</h2>
+                <h2 class="page-title">
+                    @if (Request::routeIs(Auth::getDefaultDriver() . '.guru.create'))
+                        Tambah Data Guru
+                    @elseif (Request::routeIs(Auth::getDefaultDriver() . '.siswa.create'))
+                        Tambah Data Siswa
+                    @elseif (Request::routeIs(Auth::getDefaultDriver() . '.guru.edit'))
+                        Edit Data Guru
+                    @elseif (Request::routeIs(Auth::getDefaultDriver() . '.siswa.edit'))
+                        Edit Data Siswa
+                    @endif
+                </h2>
                 <img class="" src="{{ asset('images/form.svg') }}" width="200" alt="Form">
                 <div class="card shadow mb-4">
                     @auth('admin')
@@ -195,9 +204,20 @@
                                                 </div>
                                                 <div class="form-group col-md-8">
                                                     <label for="date-input1">Tanggal Lahir</label>
-                                                    <div class="input-group">
+                                                    {{-- <div class="input-group">
                                                         <input class="form-control" id="tanggal_lahir" type="date"
-                                                            name="tanggal_lahir" value="{{ $siswa->tanggal_lahir }}">
+                                                            name="tanggal_lahir"
+                                                            value="{{ date('j F Y', strtotime($siswa->tanggal_lahir)) }}">
+                                                        <div class="input-group-append">
+                                                            <div class="input-group-text" id="button-addon-date"><span
+                                                                    class="fe fe-calendar fe-16"></span></div>
+                                                        </div>
+                                                    </div> --}}
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control drgpicker" name="tanggal_lahir"
+                                                            id="date-input1"
+                                                            value="{{ date('d-m-Y', strtotime($siswa->tanggal_lahir)) }}"
+                                                            aria-describedby="button-addon2">
                                                         <div class="input-group-append">
                                                             <div class="input-group-text" id="button-addon-date"><span
                                                                     class="fe fe-calendar fe-16"></span></div>
@@ -225,12 +245,22 @@
 @endsection
 
 @push('js')
+    <script src="{{ asset('js/daterangepicker.js') }}"></script>
     <script src="{{ asset('js/select2.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('.select2').select2({
                 theme: 'bootstrap4',
             });
+        });
+
+        $('.drgpicker').daterangepicker({
+            singleDatePicker: true,
+            timePicker: false,
+            showDropdowns: true,
+            locale: {
+                format: 'DD/MM/YYYY'
+            }
         });
 
     </script>

@@ -20,6 +20,7 @@ class Guru extends Authenticatable
         'email',
         'username',
         'nip',
+        'id_walikelas',
         'role',
         'password',
     ];
@@ -41,12 +42,15 @@ class Guru extends Authenticatable
      *
      * @var array
      */
-    protected $casts = [
-
-    ];
+    protected $casts = [];
 
     public function GetRole()
     {
         return $this->belongsTo(Role::class, 'role');
+    }
+
+    public function WaliKelas()
+    {
+        return $this->hasOne(Kelas::class, 'id_walikelas');
     }
 }

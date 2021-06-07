@@ -80,17 +80,17 @@
 
     {{-- chart --}}
     <div class="row" style="margin-top: 5%">
-        @auth ('admin')
+        @auth('admin')
             <div class="col-12 col-md-6">
-            <div class="card shadow">
-                <div class="card-header">
-                    <strong class="card-title mb-0">Jumlah User</strong>
-                </div>
-                <div class="card-body">
-                    <div id="userDonutChart"></div>
-                </div> <!-- /.card-body -->
-            </div> <!-- /.card -->
-        </div> <!-- /. col -->
+                <div class="card shadow">
+                    <div class="card-header">
+                        <strong class="card-title mb-0">Jumlah User</strong>
+                    </div>
+                    <div class="card-body">
+                        <div id="userDonutChart"></div>
+                    </div> <!-- /.card-body -->
+                </div> <!-- /.card -->
+            </div> <!-- /. col -->
         @endauth
 
         <div class="col-12 col-md-6">
@@ -110,13 +110,18 @@
 @endsection
 @push('css')
     <style>
-        .apexcharts-svg{background-color: transparent !important;}
-        .apexcharts-legend{padding: 0 !important;}
+        .apexcharts-svg {
+            background-color: transparent !important;
+        }
+
+        .apexcharts-legend {
+            padding: 0 !important;
+        }
+
     </style>
 @endpush
 @push('js')
     <script src="{{ asset('js/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('js/apexcharts.custom.js') }}"></script>
     <script>
         var userDonutChart, userDonutChartOptions = {
                 series: @json($user[1]),

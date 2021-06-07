@@ -1,5 +1,5 @@
 @extends('master.master')
-@section('title', 'Data Guru')
+@section('title', 'Data')
 
 @section('content')
     <!-- Small table -->
@@ -147,11 +147,11 @@
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <a class="dropdown-item"
-                                                    href="{{ route(Auth::getDefaultDriver() .'.siswa.show', $data->id) }}">Detail</a>
+                                                    href="{{ route(Auth::getDefaultDriver() . '.siswa.show', $data->id) }}">Detail</a>
                                                 <a class="dropdown-item"
-                                                    href="{{ route(Auth::getDefaultDriver() .'.siswa.show', $data->id) }}">Edit</a>
-                                                <button class="dropdown-item"
-                                                form="delete{{ $data->id }}" type="submit">Remove</button>
+                                                    href="{{ route(Auth::getDefaultDriver() . '.siswa.edit', $data->id) }}">Edit</a>
+                                                <button class="dropdown-item" form="delete{{ $data->id }}"
+                                                    type="submit">Remove</button>
                                             </div>
                                         </td>
                                     </tr>

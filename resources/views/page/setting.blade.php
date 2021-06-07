@@ -21,7 +21,7 @@
                     <div class="row mt-5 align-items-center">
                         <div class="col-md-3 text-center mb-5">
                             <div class="avatar avatar-xl">
-                                <img src="{{ asset(Auth::guard('admin')->user()->avatar) }}" alt="Avatar"
+                                <img src="{{ asset(Auth::guard(Auth::getDefaultDriver())->user()->avatar) }}" alt="Avatar"
                                     class="avatar-img rounded-circle">
                             </div>
                         </div>
