@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Kelas;
 use App\Models\Role;
 use App\Models\Siswa;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -43,20 +44,20 @@ class TableSiswaController extends Controller
      */
     public function store(Request $request)
     {
-        // $validate = Validator::make($request->all(), [
-        //     'nipd' => 'required|numeric',
-        //     'name' => 'required|string',
-        //     'tempat_lahir' => 'required|string',
-        //     'tanggal_lahir' =>'require|Date',
-        //     'id_kelas' => 'required|numeric',
-        // ]);
+        $validate = Validator::make($request->all(), [
+            'nipd' => 'required|numeric',
+            'name' => 'required|string',
+            'tempat_lahir' => 'required|string',
+            'tanggal_lahir' =>'required|Date',
+            'id_kelas' => 'required|numeric',
+        ]);
 
-        // if ($validate->fails()) {
-        //     return redirect()->back()
-        //         ->withErrors($validate);
-        // }
+        if ($validate->fails()) {
+            return redirect()->back()
+                ->withErrors($validate);
+        }
 
-        $password = explode('admin', $request->username);
+        $password = Carbon::parse($request->tanggal_lahir)->format('dmY');
 
         if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
@@ -77,7 +78,7 @@ class TableSiswaController extends Controller
                 'tanggal_lahir' => $request->tanggal_lahir,
                 'avatar' => $request->avatar,
                 'id_kelas' => $request->id_kelas,
-                'password' => Hash::make($password[0]),
+                'password' => Hash::make($password),
             ]);
         } else {
             siswa::create([
@@ -87,7 +88,7 @@ class TableSiswaController extends Controller
                 'tanggal_lahir' => $request->tanggal_lahir,
                 'avatar' => 'avatars/default.png',
                 'id_kelas' => $request->id_kelas,
-                'password' => Hash::make($password[0]),
+                'password' => Hash::make($password),
             ]);
         }
 

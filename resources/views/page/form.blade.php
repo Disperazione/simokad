@@ -79,7 +79,7 @@
                                                 <select class="form-control select2" id="simple-select2" name="id_kelas">
                                                     <optgroup label="Kelas">
                                                         @foreach ($kelas as $kel)
-                                                            <option value="{{ $kel->id }}">{{ $kel->slug }}</option>
+                                                            <option value="{{ $kel->id }}">{{ $kel->GetKelas() }}</option>
                                                         @endforeach
                                                     </optgroup>
                                                 </select>

@@ -20,7 +20,6 @@ class KelasSeeder extends Seeder
             DB::table('kelas')->insert(array(
                 'id_walikelas' => $faker->numberBetween($min = 1, $max = 10),
                 'name' => "XI Rekayasa Perangkat Lunak $i",
-                'slug' => "XI RPL $i",
             ));
         }
 

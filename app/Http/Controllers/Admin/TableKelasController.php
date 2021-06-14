@@ -16,7 +16,7 @@ class TableKelasController extends Controller
      */
     public function index()
     {
-        return view('page.tabel', ['kelas' => Kelas::select('id', 'id_walikelas', 'name',  'slug',)->get()]);
+        return view('page.tabel', ['kelas' => Kelas::select('id', 'id_walikelas', 'name')->get()]);
     }
 
     /**
@@ -48,7 +48,6 @@ class TableKelasController extends Controller
      */
     public function show(Kelas $kelas, Request $request)
     {
-
         return view('page.detail', ['kelas' => $kelas, 'siswa' => Siswa::select('id', 'name', 'avatar', 'nipd', 'tempat_lahir', 'tanggal_lahir')->where('id_kelas', 2)->get()]);
     }
 

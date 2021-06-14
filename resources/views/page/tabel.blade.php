@@ -35,12 +35,23 @@
                                     <th>EMAIl</th>
                                     <th>JABATAN</th>
                                     <th>ACTION</th>
-                                    {{-- table kelas --}}
-                                @elseif (Request::is('*/kelas'))
+                                {{-- Table mapel --}}
+                                @elseif (Request::is('*/mapel'))
+                                    <th>No.</th>
+                                    <th>MATA PELAJARAN</th>
+                                    <th>GURU</th>
+                                    <th>PAKET</th>
+                                    <th>KELOMPOK BELAJAR</th>
+                                    <th>ACTION</th>
+                                @endif
+                            @endauth
+                            @auth('admin','guru')
+                                {{-- table kelas --}}
+                                @if (Request::is('*/kelas'))
                                     <th>No.</th>
                                     <th>Walikelas</th>
                                     <th>Jurusan</th>
-                                    <th>KELAS</th>
+                                    <th>Kelas</th>
                                     <th>ACTION</th>
                                     {{-- table siswa --}}
                                 @elseif (Request::is('*/siswa'))
@@ -49,14 +60,6 @@
                                     <th>NAMA</th>
                                     <th>KELAS</th>
                                     <th>TEMPAT & TANGGAL LAHIR</th>
-                                    <th>ACTION</th>
-                                    {{-- Table mapel --}}
-                                @elseif (Request::is('*/mapel'))
-                                    <th>No.</th>
-                                    <th>MATA PELAJARAN</th>
-                                    <th>GURU</th>
-                                    <th>PAKET</th>
-                                    <th>KELOMPOK BELAJAR</th>
                                     <th>ACTION</th>
                                 @endif
                             @endauth
@@ -94,14 +97,14 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                                {{-- kelas --}}
+                            {{-- kelas --}}
                             @elseif (Request::is('*/kelas'))
                                 @foreach ($kelas as $data)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $data->GetGuru->name }}</td>
-                                        <td>{{ $data->name }}</td>
-                                        <td>{{ $data->slug }}</td>
+                                        <td>{{ $data->GetJurusan() }}</td>
+                                        <td>{{ $data->GetKelas() }}</td>
                                         <td>
                                             <form
                                                 action="{{ route(Auth::getDefaultDriver() . '.kelas.destroy', $data->id) }}"
@@ -131,7 +134,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $data->nipd }}</td>
                                         <td>{{ $data->name }}</td>
-                                        <td>{{ $data->GetKelas->slug }}</td>
+                                        <td>{{ $data->GetKelas->GetKelas() }}</td>
                                         <td>{{ $data->tempat_lahir }},
                                             {{ \Carbon\Carbon::parse($data->tanggal_lahir)->format('d-m-Y') }}</td>
                                         <td>
