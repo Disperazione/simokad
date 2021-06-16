@@ -28,8 +28,8 @@
                     class="nav-item dropdown {{ Request::is(Auth::getDefaultDriver() . '/kelas', Auth::getDefaultDriver() . '/kelas/*') ? 'active' : '' }}">
                     <a href="#ui-elements" data-toggle="collapse" aria-expanded="false"
                         class="dropdown-toggle nav-link {{ Request::is(Auth::getDefaultDriver() . '/kelas', Auth::getDefaultDriver() . '/kelas/*') ? 'active' : '' }}">
-                        <i class="fe fe-grid fe-16"></i>
-                        <span class="ml-3 item-text">Data</span>
+                        <i class="fe fe-square fe-16"></i>
+                        <span class="ml-3 item-text">Kelas</span>
                     </a>
                     <ul class="collapse list-unstyled pl-4 w-100" id="ui-elements">
                         <li class="nav-item">

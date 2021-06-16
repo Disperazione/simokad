@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Guru;
 use Illuminate\Http\Request;
 use App\Models\Kelas;
 use App\Models\Siswa;
+use App\Models\Role;
 
 class TableKelasController extends Controller
 {
@@ -26,7 +28,7 @@ class TableKelasController extends Controller
      */
     public function create()
     {
-        //
+        return view('page.form',['kelas' => Kelas::all(), 'guru' => Guru::all()]);
     }
 
     /**

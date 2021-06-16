@@ -10,6 +10,8 @@
                         Tambah Data Guru
                     @elseif (Request::routeIs(Auth::getDefaultDriver() . '.siswa.create'))
                         Tambah Data Siswa
+                    @elseif (Request::routeIs(Auth::getDefaultDriver() . '.kelas.create'))
+                        Tambah Data Kelas
                     @elseif (Request::routeIs(Auth::getDefaultDriver() . '.guru.edit'))
                         Edit Data Guru
                     @elseif (Request::routeIs(Auth::getDefaultDriver() . '.siswa.edit'))
@@ -59,6 +61,41 @@
                                     </button>
                                 </Form>
                             </div>
+                            {{-- form tambah kelas --}}
+                        @elseif (Request::routeIs(Auth::getDefaultDriver() . '.kelas.create'))
+                            <div class="card-body">
+                                <Form action="{{ route(Auth::getDefaultDriver() . '.kelas.store') }}" method="POST">
+                                    @csrf
+                                    <div class="form-row">
+                                        <div class="form-group col mb-8">
+                                            <label for="simple-select2">Wali Kelas</label>
+                                            <select class="form-control select2 text-capitalize" id="simple-select"
+                                                name="id_walikelas">
+                                                <optgroup label="Walas">
+                                                    @foreach ($guru as $gur)
+                                                            <option value="{{ $gur->id }}">{{ $gur->name }}
+                                                            </option>
+                                                        @endforeach
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col mb-4">
+                                            <label for="simple-select2">Kelas</label>
+                                            <select class="form-control select2" id="simple-select2" name="id_kelas">
+                                                <optgroup label="Kelas">
+                                                    @foreach ($kelas as $kel)
+                                                        <option value="{{ $kel->id }}">{{ $kel->GetKelas() }}
+                                                        </option>
+                                                    @endforeach
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn mb-2 btn-primary float-right"><span
+                                            class="fe fe-arrow-right fe-16 mr-2"></span>Simpan</button>
+                                </Form>
+                            </div>
+
                             {{-- Form tambah data siswa di Admin --}}
                         @elseif (Request::routeIs(Auth::getDefaultDriver() . '.siswa.create'))
                             <div class="card-body">
@@ -79,7 +116,8 @@
                                                 <select class="form-control select2" id="simple-select2" name="id_kelas">
                                                     <optgroup label="Kelas">
                                                         @foreach ($kelas as $kel)
-                                                            <option value="{{ $kel->id }}">{{ $kel->GetKelas() }}</option>
+                                                            <option value="{{ $kel->id }}">{{ $kel->GetKelas() }}
+                                                            </option>
                                                         @endforeach
                                                     </optgroup>
                                                 </select>
