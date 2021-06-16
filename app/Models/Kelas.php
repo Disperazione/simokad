@@ -11,13 +11,12 @@ class Kelas extends Model
     protected $fillable = [
         'id_walikelas',
         'name',
-        'slug',
     ];
 
     protected $table = 'kelas';
-    public function getSiswa()
+    public function GetSiswa()
     {
-        return $this->hasMany(Siswa::class, 'id_kelas', 'id');
+        return $this->hasMany(Siswa::class, 'id_kelas', 'id')->orderBy('siswa.name', 'ASC');
     }
     public function GetGuru()
     {
@@ -31,27 +30,18 @@ class Kelas extends Model
     {
         $kelas = preg_split('/\s/', ucwords(preg_replace('/\sdan/', '', $this->name)), -1, PREG_SPLIT_NO_EMPTY);
         $abbreviation = '';
-        if (count($kelas) === 3) {
-            foreach ($kelas as $key => $word) {
-                if ($key === array_key_first($kelas)) {
-                    $abbreviation .= $word . ' ';
-                } elseif ($key === array_key_last($kelas)) {
-                    $abbreviation .= ' ' . $word;
-                } else {
+        foreach ($kelas as $key => $word) {
+            if ($key === array_key_first($kelas)) {
+                $abbreviation .= $word . ' ';
+            } elseif ($key === array_key_last($kelas)) {
+                $abbreviation .= ' ' . $word;
+            } else {
+                if (count($kelas) === 3) {
                     if ($word === "Broadcast") {
                         $abbreviation .= 'BRC';
-                    }
-                    else {
+                    } else {
                         $abbreviation .= 'MM';
                     }
-                }
-            }
-        } else {
-            foreach ($kelas as $key => $word) {
-                if ($key === array_key_first($kelas)) {
-                    $abbreviation .= $word . ' ';
-                } elseif ($key === array_key_last($kelas)) {
-                    $abbreviation .= ' ' . $word;
                 } else {
                     $abbreviation .= $word[0];
                 }

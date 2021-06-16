@@ -14,9 +14,12 @@ class CreateNilaiTable extends Migration
     public function up()
     {
         Schema::create('nilai', function (Blueprint $table) {
-            $table->string('nilai');
+            $table->string('uuid');
+            $table->string('name');
             $table->foreignId('id_siswa')->constrained('siswa')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('id_guru')->constrained('guru')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('nilai');
+            $table->timestamps();
         });
     }
 

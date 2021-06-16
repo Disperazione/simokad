@@ -136,7 +136,7 @@
                                         <td>{{ $data->name }}</td>
                                         <td>{{ $data->GetKelas->GetKelas() }}</td>
                                         <td>{{ $data->tempat_lahir }},
-                                            {{ \Carbon\Carbon::parse($data->tanggal_lahir)->format('d-m-Y') }}</td>
+                                            {{ \Carbon\Carbon::parse($data->tanggal_lahir)->translatedFormat('d-m-Y') }}</td>
                                         <td>
                                             <form
                                                 action="{{ route(Auth::getDefaultDriver() . '.siswa.destroy', $data->id) }}"
@@ -160,7 +160,7 @@
                                     </tr>
                                 @endforeach
                                 {{-- table mapel --}}
-                            @elseif (Request::is('*/mapel'))
+                            @elseif (Request::is('*/mapel*'))
                                 @foreach ($mapel as $data)
                                     <tr>
                                         <td>{{ $data->iteration }}</td>

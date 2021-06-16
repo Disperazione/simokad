@@ -126,7 +126,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link pl-3 {{ Request::is(Auth::getDefaultDriver() . '/siswa') ? 'active' : '' }}"
+                            <a class="nav-link pl-3 {{ Request::is(Auth::getDefaultDriver() . '/siswa*')&&!Request::routeIs(Auth::getDefaultDriver() . '.siswa.create') ? 'active' : '' }}"
                                 href="{{ route(Auth::getDefaultDriver() . '.siswa.index') }}">
                                 <span class="ml-1 item-text">Data Siswa</span>
                             </a>

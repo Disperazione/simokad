@@ -46,9 +46,9 @@ class TableKelasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Kelas $kelas, Request $request)
+    public function show(Request $request,$kelas)
     {
-        return view('page.detail', ['kelas' => $kelas, 'siswa' => Siswa::select('id', 'name', 'avatar', 'nipd', 'tempat_lahir', 'tanggal_lahir')->where('id_kelas', 2)->get()]);
+        return view('page.detail', ['kelas' => Kelas::where('id',$kelas)->first()]);
     }
 
     /**

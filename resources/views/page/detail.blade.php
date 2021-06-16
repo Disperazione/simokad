@@ -5,7 +5,6 @@
     <div class="row justify-content-center">
         <div class="col-12">
             <h2 class="h3 mb-4 page-title">Detail
-                {{-- {{ Request::routeIs(Auth::getDefaultDriver() . '.siswa.show') ? 'Siswa' : 'Guru', 'Kelas' }} --}}
                 @if (Request::routeIs(Auth::getDefaultDriver() . '.siswa.show'))
                     Siswa
                 @elseif (Request::routeIs(Auth::getDefaultDriver() . '.guru.show'))
@@ -19,7 +18,7 @@
                     <div class="row mt-5 align-items-center">
                         <div class="col-md-3 text-center mb-5">
                             <div class="avatar avatar-xl">
-                                <img src="{{ $siswa->avatar }}" alt="Avatar" class="avatar-img rounded-circle">
+                                <img src="{{ asset($siswa->avatar) }}" alt="Avatar" class="avatar-img rounded-circle">
                             </div>
                         </div>
                         <div class="col">
@@ -28,7 +27,7 @@
                                     <h4 class="mb-1">{{ $siswa->name }}</h4>
                                     <a class="small mb-4"
                                         href="{{ route(Auth::getDefaultDriver() . '.kelas.show', $siswa->id_kelas) }}">
-                                        <span class="badge badge-dark">{{ $siswa->GetKelas->slug }}</span>
+                                        <span class="badge badge-secondary">{{ $siswa->GetKelas->GetKelas() }}</span>
                                     </a>
                                 </div>
                             </div>
@@ -36,13 +35,13 @@
                                 <div class="col">
                                     <p class="small mb-0 text-muted">{{ $siswa->nipd }}</p>
                                     <p class="small mb-0 text-muted">{{ $siswa->tempat_lahir }},
-                                        {{ date('j F Y', strtotime($siswa->tanggal_lahir)) }}</p>
+                                        {{ \Carbon\Carbon::parse($siswa->tanggal_lahir)->translatedFormat('d F Y') }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row justify-content-center my-4">
-                        <div class="col-md-4">
+                        <div class="col col-md-4">
                             <div class="card mb-4 shadow">
                                 <div class="card-body my-n3">
                                     <div class="row align-items-center">
@@ -55,21 +54,22 @@
                                             <a href="{{ route(Auth::getDefaultDriver() . '.siswa.edit', $siswa->id) }}">
                                                 <h3 class="h5 mt-4 mb-1">Edit</h3>
                                             </a>
-                                            <p class="text-muted">Edit Data NIPD, Nama Peserta Didik, Tempat Lahir/Tanggal
-                                                Lahir,
-                                                Data
-                                                Jenis Kelamin.</p>
+                                            <p class="text-muted">
+                                                Edit Data NIPD, Nama Peserta Didik, Tempat Lahir/Tanggal
+                                                Lahir, Jenis Kelamin.
+                                            </p>
                                         </div> <!-- .col -->
                                     </div> <!-- .row -->
                                 </div> <!-- .card-body -->
                                 <div class="card-footer">
                                     <a href="{{ route(Auth::getDefaultDriver() . '.siswa.edit', $siswa->id) }}"
-                                        class="d-flex justify-content-between text-muted"><span>Edit</span><i
-                                            class="fe fe-chevron-right"></i></a>
+                                        class="d-flex justify-content-between text-muted">
+                                        <span>Edit</span><i class="fe fe-chevron-right"></i>
+                                    </a>
                                 </div> <!-- .card-footer -->
                             </div> <!-- .card -->
                         </div> <!-- .col-md-->
-                        <div class="col-md-4">
+                        <div class="col col-md-4">
                             <div class="card mb-4 shadow">
                                 <div class="card-body my-n3">
                                     <div class="row align-items-center">
@@ -233,7 +233,28 @@
                 @elseif (Request::routeIs(Auth::getDefaultDriver() . '.kelas.show'))
                     <div class="row justify-content-center">
                         <div class="col-12">
-
+                            <div class="row mt-2 align-items-center">
+                                <div class="col-md-3 text-center mb-2">
+                                    <div class="avatar avatar-xl">
+                                        <img src="{{ asset($kelas->GetGuru->avatar) }}" alt="{{ $kelas->GetGuru->name }}"
+                                            class="avatar-img rounded-circle">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-7">
+                                            <h4 class="mb-1">{{ $kelas->GetGuru->name }}</h4>
+                                            <p class="small mb-1 badge badge-secondary text-capitalize">{{ $kelas->GetGuru->GetRole->name}} {{ $kelas->GetKelas() }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-4 mt-2">
+                                        <div class="col">
+                                            <p class="small mb-0 text-muted">{{ $kelas->GetGuru->nip }}</p>
+                                            <p class="small mb-0 text-muted">{{ $kelas->GetGuru->email }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <!-- Small table -->
                                 <div class="col-md-12 my-4">
@@ -252,24 +273,24 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($siswa as $data)
+                                                    @foreach ($kelas->GetSiswa as $siswa)
                                                         <tr>
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>
                                                                 <div class="avatar avatar-md">
-                                                                    <img src="{{ asset($data->avatar) }}" alt="..."
+                                                                    <img src="{{ asset($siswa->avatar) }}" alt="{{ $siswa->name }}"
                                                                         class="avatar-img rounded-circle">
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <strong>{{ $data->nipd }}</strong>
+                                                                <strong>{{ $siswa->nipd }}</strong>
                                                             </td>
                                                             <td>
-                                                                {{ $data->name }}
+                                                                {{ $siswa->name }}
                                                             </td>
                                                             <td>
-                                                                {{ $data->tempat_lahir }}, <br>
-                                                                {{ date('j F Y', strtotime($data->tanggal_lahir)) }}
+                                                                {{ $siswa->tempat_lahir }}, <br>
+                                                                {{ \Carbon\Carbon::parse($siswa->tanggal_lahir)->translatedFormat('d F Y') }}
                                                             </td>
                                                             <td><button class="btn btn-sm dropdown-toggle more-horizontal"
                                                                     type="button" data-toggle="dropdown" aria-haspopup="true"
@@ -278,11 +299,11 @@
                                                                 </button>
                                                                 <div class="dropdown-menu dropdown-menu-right">
                                                                     <a class="dropdown-item"
-                                                                        href="{{ route(Auth::getDefaultDriver() . '.siswa.show', $data->id) }}">Detail</a>
+                                                                        href="{{ route(Auth::getDefaultDriver() . '.siswa.show', $siswa->id) }}">Detail</a>
                                                                     <a class="dropdown-item"
-                                                                        href="{{ route(Auth::getDefaultDriver() . '.siswa.edit', $data->id) }}">Edit</a>
+                                                                        href="{{ route(Auth::getDefaultDriver() . '.siswa.edit', $siswa->id) }}">Edit</a>
                                                                     <button class="dropdown-item"
-                                                                        form="delete{{ $data->id }}"
+                                                                        form="delete{{ $siswa->id }}"
                                                                         type="submit">Remove</button>
                                                                 </div>
                                                             </td>
